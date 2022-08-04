@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kwiz/dash.dart';
-import 'package:kwiz/main.dart';
+
 import 'custom.dart';
+import 'dash.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -16,19 +16,32 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(padding: const EdgeInsets.all(16), children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 100, left: 150, right: 150, bottom: 50),
+        Padding(
+          padding:
+              const EdgeInsets.only(top: 70, left: 80, right: 80, bottom: 60),
           child: SizedBox(
-            height: 150,
-            width: 300,
-            child: Text(
-              "We are so glad to have you here",
-              style: TextStyle(
-                fontSize: 40,
-                fontFamily: 'Euclid',
-              ),
-              textAlign: TextAlign.center,
-            ),
+            height: 120,
+            width: 400,
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(children: [
+                  const TextSpan(
+                    text: "Create your brand new account",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 45,
+                        fontFamily: 'Euclid',
+                        fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text: " here",
+                    style: TextStyle(
+                        color: Colors.blue.shade900,
+                        fontSize: 45,
+                        fontFamily: 'Euclid',
+                        fontWeight: FontWeight.bold),
+                  )
+                ])),
           ),
         ),
         const Txtfield1(
@@ -51,28 +64,58 @@ class _SignupState extends State<Signup> {
           ),
         ),
         const Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.all(5),
           child: SizedBox(
             width: 100,
             child: Text(
               'Or',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontFamily: 'Euclid', color: Colors.grey, fontSize: 30),
+                fontFamily: 'Euclid',
+                color: Colors.grey,
+                fontSize: 22,
+              ),
             ),
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Button(
-            outline: Colors.blue.shade900,
-            fill: Colors.transparent,
-            label: 'Continue With Google',
-            labelcolor: Colors.black,
+          padding: const EdgeInsets.all(25),
+          child: SizedBox(
             width: 400,
-            destination: const Home(),
+            height: 65,
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.transparent,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(17),
+                        side:
+                            BorderSide(color: Colors.blue.shade900, width: 3))),
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: 10),
+                      height: 33,
+                      width: 33,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/google.png'))),
+                    ),
+                    const Text(
+                      'Continue with Google',
+                      style: TextStyle(
+                          fontFamily: 'Euclid',
+                          color: Colors.grey,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
           ),
-        )
+        ),
       ]),
     );
   }

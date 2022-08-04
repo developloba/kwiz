@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwiz/custom.dart';
-import 'package:kwiz/signin.dart';
+import 'custom.dart';
+import 'signin.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -56,12 +56,14 @@ class Home extends StatelessWidget {
               decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage('assets/2.png')))),
           Button(
+            width: 450,
             fill: Colors.blue.shade900,
           ),
           const SizedBox(
             height: 20,
           ),
           Button(
+            width: 450,
             fill: Colors.transparent,
             outline: Colors.blue.shade900,
             label: 'Sign Up',

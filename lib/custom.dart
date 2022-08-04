@@ -131,7 +131,10 @@ class _ButtonState extends State<Button> {
       },
       child: Text(
         widget.label,
-        style: TextStyle(fontSize: 28, color: widget.labelcolor),
+        style: TextStyle(
+          fontSize: 28,
+          color: widget.labelcolor,
+        ),
       ),
     );
   }
