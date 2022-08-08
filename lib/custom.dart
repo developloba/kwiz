@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/explore.dart';
 import 'login.dart';
 
 class Txtfield1 extends StatefulWidget {
@@ -193,5 +194,56 @@ class Component extends StatelessWidget {
         style: TextStyle(fontSize: 12, color: Colors.black),
       ),
     );
+  }
+}
+
+class Circleindicator extends Decoration {
+  final Color color;
+  final double radius;
+  const Circleindicator({required this.color, required this.radius});
+  @override
+  BoxPainter createBoxPainter([
+    VoidCallback? onChanged,
+  ]) {
+    return _CirclePainter(color: color, radius: radius);
+  }
+}
+
+class _CirclePainter extends BoxPainter {
+  final Color color;
+  final double radius;
+  _CirclePainter({required this.color, required this.radius});
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration configuration) {
+    // ignore: todo
+    // TODO: implement paint
+    // ignore: no_leading_underscores_for_local_identifiers
+    Paint _paint = Paint();
+    _paint.color = color;
+    _paint.isAntiAlias = true;
+    final Offset circleOffset = Offset(
+        configuration.size!.width / 2 - radius / 2, configuration.size!.height);
+    canvas.drawCircle(offset + circleOffset, radius, _paint);
+  }
+}
+
+class Abstract extends StatelessWidget {
+  const Abstract(
+      {Key? key, required this.pic, this.destination = const Explorer()})
+      : super(key: key);
+  final Widget pic;
+  final destination;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        onTap: () {},
+        child: Card(
+          semanticContainer: true,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          child: pic,
+        ));
   }
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:kwik/explore.dart';
 import 'package:kwik/home.dart';
-import 'package:kwik/main.dart';
+
 import 'package:kwik/profile.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -21,50 +20,35 @@ class _DashState extends State<Dash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          backgroundColor: Colors.blue.shade50,
-          destinations: const <Widget>[
-            NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
+        bottomNavigationBar: Container(
+          color: Colors.blue.shade50,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: GNav(
+              onTabChange: (int index) {
+                setState(() {
+                  currentPageIndex = index;
+                });
+              },
+              selectedIndex: currentPageIndex,
+              backgroundColor: Colors.blue.shade50,
+              tabs: const <GButton>[
+                GButton(
+                  icon: Icons.home,
+                  text: 'Home',
+                ),
+                GButton(
+                  icon: Icons.explore,
+                  text: 'Explore',
+                ),
+                GButton(icon: Icons.account_circle, text: 'Profile'),
+              ],
+              gap: 20,
+              color: Colors.black,
+              iconSize: 30,
+              tabBackgroundColor: Colors.blue.shade100,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.explore),
-              label: 'Explore',
-              selectedIcon: Icon(Icons.explore_sharp),
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.account_circle),
-              label: 'Profile',
-            ),
-          ],
-        ),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(100),
-          child: AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarColor: Colors.black12,
-                  systemNavigationBarColor: Colors.cyan.shade50
-                  // Status ba
-                  ),
-              backgroundColor: Colors.transparent,
-              foregroundColor: Colors.black,
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                'Kwiz',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue.shade900,
-                    fontFamily: 'Euclid',
-                    fontSize: 30),
-              )),
+          ),
         ),
         backgroundColor: Colors.white,
         body: <Widget>[

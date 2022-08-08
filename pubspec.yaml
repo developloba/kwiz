@@ -76,6 +76,11 @@ flutter:
           - asset: assets/Euclid-Medium.ttf
           - asset: assets/Euclid-SemiBold.ttf
             style: italic
+      - family: 'Pop'
+        fonts:
+          - asset: assets/Poppins-Medium.ttf
+          - asset: assets/Poppins-Bold.ttf
+            style: italic
 
   #
   # For details regarding fonts from package dependencies,
