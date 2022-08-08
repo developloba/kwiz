@@ -17,8 +17,11 @@ class _SignupState extends State<Signup> {
       backgroundColor: Colors.white,
       body: ListView(padding: const EdgeInsets.all(16), children: [
         Padding(
-          padding:
-              const EdgeInsets.only(top: 70, left: 80, right: 80, bottom: 60),
+          padding: const EdgeInsets.only(
+            top: 70,
+            left: 80,
+            right: 80,
+          ),
           child: SizedBox(
             height: 120,
             width: 400,
@@ -29,7 +32,7 @@ class _SignupState extends State<Signup> {
                     text: "Create your brand new account",
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 45,
+                        fontSize: 40,
                         fontFamily: 'Euclid',
                         fontWeight: FontWeight.bold),
                   ),
@@ -37,7 +40,7 @@ class _SignupState extends State<Signup> {
                     text: " here",
                     style: TextStyle(
                         color: Colors.blue.shade900,
-                        fontSize: 45,
+                        fontSize: 40,
                         fontFamily: 'Euclid',
                         fontWeight: FontWeight.bold),
                   )
@@ -46,13 +49,30 @@ class _SignupState extends State<Signup> {
         ),
         const Txtfield1(
           text: 'Firstname',
+          pad: 0,
+          top: 20,
+          side: 30,
         ),
         const Txtfield1(
           text: 'Lastname',
+          pad: 0,
+          top: 20,
+          side: 30,
         ),
-        const Txtfield1(),
-        const PasswordField(),
+        const Txtfield1(
+          pad: 0,
+          top: 20,
+          side: 30,
+        ),
         const PasswordField(
+          pad: 0,
+          top: 20,
+          side: 30,
+        ),
+        const PasswordField(
+          pad: 0,
+          top: 20,
+          side: 30,
           text: 'Confirm Password',
         ),
         Padding(
@@ -63,26 +83,11 @@ class _SignupState extends State<Signup> {
             destination: const Dash(),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.all(5),
-          child: SizedBox(
-            width: 100,
-            child: Text(
-              'Or',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Euclid',
-                color: Colors.grey,
-                fontSize: 22,
-              ),
-            ),
-          ),
-        ),
         Padding(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(20),
           child: SizedBox(
             width: 400,
-            height: 65,
+            height: 75,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Colors.transparent,

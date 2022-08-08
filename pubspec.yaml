@@ -74,7 +74,10 @@ flutter:
           - asset: assets/Euclid-Medium.ttf
           - asset: assets/Euclid-SemiBold.ttf
             style: italic
-
+fonts:
+      - family: Menuicon
+        fonts:
+          - asset: assets/MenuIcon.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
