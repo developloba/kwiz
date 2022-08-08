@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/menu_icon_icons.dart';
-import 'package:kwik/my_flutter_app_icons.dart';
-import 'menu_icon_icons.dart';
+import 'package:flutter/services.dart';
+
+import 'package:kwik/explore.dart';
+import 'package:kwik/home.dart';
+import 'package:kwik/main.dart';
+import 'package:kwik/profile.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Dash extends StatefulWidget {
   const Dash({Key? key}) : super(key: key);
@@ -12,71 +16,61 @@ class Dash extends StatefulWidget {
 
 class _DashState extends State<Dash> {
   final String firstname = 'Korede';
+  int currentPageIndex = 0;
+  var pages = [const Dash(), const Explorer(), const Account()];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Center(
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/3.png')),
-          ),
-          child: Scaffold(
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(50),
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                toolbarHeight: 30,
-                actions: [
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(MenuIcon.menu_icon))
-                ],
-              ),
+    return Scaffold(
+        bottomNavigationBar: NavigationBar(
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPageIndex = index;
+            });
+          },
+          selectedIndex: currentPageIndex,
+          backgroundColor: Colors.blue.shade50,
+          destinations: const <Widget>[
+            NavigationDestination(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-            backgroundColor: Colors.transparent,
-            body: Padding(
-              padding: const EdgeInsets.only(top: 100, right: 120, left: 120),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Text(
-                    'Good morning, $firstname',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 35, fontFamily: 'Euclid'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Start a new quiz',
-                    style: TextStyle(
-                        fontFamily: 'Euclid',
-                        color: Colors.cyanAccent.shade400,
-                        fontSize: 35),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(125, 54),
-                        elevation: 0,
-                        primary: Colors.cyanAccent.shade400,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(183))),
-                    onPressed: () {},
-                    child: const Text(
-                      'Start',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  )
-                ],
-              ),
+            NavigationDestination(
+              icon: Icon(Icons.explore),
+              label: 'Explore',
+              selectedIcon: Icon(Icons.explore_sharp),
             ),
-          ),
+            NavigationDestination(
+              icon: Icon(Icons.account_circle),
+              label: 'Profile',
+            ),
+          ],
         ),
-      ),
-    );
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(100),
+          child: AppBar(
+              systemOverlayStyle: SystemUiOverlayStyle(
+                  statusBarColor: Colors.black12,
+                  systemNavigationBarColor: Colors.cyan.shade50
+                  // Status ba
+                  ),
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.black,
+              elevation: 0,
+              centerTitle: true,
+              title: Text(
+                'Kwiz',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue.shade900,
+                    fontFamily: 'Euclid',
+                    fontSize: 30),
+              )),
+        ),
+        backgroundColor: Colors.white,
+        body: <Widget>[
+          const Homepage(),
+          const Explorer(),
+          const Account()
+        ][currentPageIndex]);
   }
 }

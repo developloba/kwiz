@@ -170,3 +170,28 @@ class _ButtonState extends State<Button> {
     );
   }
 }
+
+class Component extends StatelessWidget {
+  const Component({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(16),
+        primary: Colors.white24,
+        elevation: 0,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(50),
+                topRight: Radius.circular(50))),
+        fixedSize: const Size(280, 60),
+      ),
+      onPressed: () {},
+      child: const Text(
+        'Home',
+        style: TextStyle(fontSize: 12, color: Colors.black),
+      ),
+    );
+  }
+}
