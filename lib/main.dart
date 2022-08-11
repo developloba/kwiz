@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/question.dart';
 import 'custom.dart';
 import 'signin.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: const Home(),
+      home: const Quiz(),
       title: 'Kwik',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

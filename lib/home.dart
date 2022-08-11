@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/question.dart';
 import 'custom.dart';
 
 class Homepage extends StatefulWidget {
@@ -98,10 +99,12 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                   controller: _tabController,
                   children: [
                     Abstract(
-                        pic: Image.asset(
-                      'assets/maths.jpg',
-                      fit: BoxFit.fill,
-                    )),
+                      pic: Image.asset(
+                        'assets/maths.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      destination: const Quiz(),
+                    ),
                     Abstract(
                         pic: Image.asset(
                       'assets/sci.jpg',
