@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/explore.dart';
+import 'package:kwik/question.dart';
 import 'login.dart';
 
 class Txtfield1 extends StatefulWidget {
@@ -229,21 +230,82 @@ class _CirclePainter extends BoxPainter {
 
 class Abstract extends StatelessWidget {
   const Abstract(
-      {Key? key, required this.pic, this.destination = const Explorer()})
+      {Key? key,
+      required this.pic,
+      this.destination = const Explorer(),
+      this.width = 0,
+      this.length = 0})
       : super(key: key);
   final Widget pic;
   final destination;
+  final double width;
+  final double length;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
         onTap: () {},
-        child: Card(
-          semanticContainer: true,
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          child: pic,
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: width,
+          height: length,
+          child: Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            child: pic,
+          ),
         ));
+  }
+}
+
+class AnswerButton extends StatelessWidget {
+  const AnswerButton({
+    Key? key,
+    this.width = 295,
+    this.height = 75,
+    this.label = 'Login',
+    this.destination = const Login(),
+    this.fill = Colors.blue,
+    this.outline = Colors.transparent,
+    this.labelcolor = Colors.white,
+    this.pad = 25,
+    this.radius = 20,
+  }) : super(key: key);
+  final double width;
+  final double height;
+  final String label;
+  // ignore: prefer_typing_uninitialized_variables
+  final destination;
+  final Color fill;
+  final Color outline;
+  final Color labelcolor;
+  final double pad;
+  final double radius;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(pad),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            primary: fill,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(radius)),
+            fixedSize: Size(width, height),
+            side: BorderSide(color: outline)),
+        onPressed: () {},
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 28,
+            color: labelcolor,
+          ),
+        ),
+      ),
+    );
   }
 }
