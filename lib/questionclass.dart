@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
- 
+
 class Question {
   late String questionText;
   late bool questionAnswer;
@@ -61,7 +61,7 @@ class Quizbrain {
     } else if (questionnumber == questionbank.length) {
       return responsenumber = 1;
     } else {
-      Alert(context: BuildContext, title: "RFLUTTER", desc: "Flutter is awesome.").show();
+      return 1;
     }
   }
 }
