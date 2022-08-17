@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/question.dart';
+import 'package:kwik/dash.dart';
 import 'custom.dart';
 import 'signin.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: const Quiz(),
-      title: 'Kwik',
+      home: const Dash(),
+      title: 'Kwiz',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.indigo,

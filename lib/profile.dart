@@ -111,7 +111,7 @@ class _AccountState extends State<Account> {
                     ],
                   ),
                   const Text(
-                    'Categories',
+                    'Achievements',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Euclid', fontSize: 30, color: Colors.grey),

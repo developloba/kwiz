@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/explore.dart';
-import 'package:kwik/question.dart';
 import 'login.dart';
 
 class Txtfield1 extends StatefulWidget {
@@ -237,6 +236,7 @@ class Abstract extends StatelessWidget {
       this.length = 0})
       : super(key: key);
   final Widget pic;
+  // ignore: prefer_typing_uninitialized_variables
   final destination;
   final double width;
   final double length;
@@ -244,7 +244,12 @@ class Abstract extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
+        },
         child: Container(
           padding: const EdgeInsets.all(10),
           width: width,

@@ -12,7 +12,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    TabController _tabController = TabController(length: 3, vsync: this);
+    TabController tabController = TabController(length: 3, vsync: this);
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
@@ -87,7 +87,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                     ),
                   )
                 ],
-                controller: _tabController,
+                controller: tabController,
               ),
               const SizedBox(
                 height: 30,
@@ -96,7 +96,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                 height: 300,
                 width: 700,
                 child: TabBarView(
-                  controller: _tabController,
+                  controller: tabController,
                   children: [
                     Abstract(
                       pic: Image.asset(
@@ -106,15 +106,19 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                       destination: const Quiz(),
                     ),
                     Abstract(
-                        pic: Image.asset(
-                      'assets/sci.jpg',
-                      fit: BoxFit.fill,
-                    )),
+                      pic: Image.asset(
+                        'assets/sci.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      destination: const Quiz(),
+                    ),
                     Abstract(
-                        pic: Image.asset(
-                      'assets/trivia.jpg',
-                      fit: BoxFit.fill,
-                    )),
+                      pic: Image.asset(
+                        'assets/trivia.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      destination: const Quiz(),
+                    ),
                   ],
                 ),
               ),

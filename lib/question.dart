@@ -1,6 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
-import 'package:kwik/custom.dart';
+import 'questionclass.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+
+// ignore: must_be_immutable
+class Quizbutton extends StatefulWidget {
+  Quizbutton({
+    Key? key,
+    this.indicator = Colors.blue,
+    required this.correctanswer,
+    required this.label,
+  }) : super(key: key);
+  Color indicator;
+  bool correctanswer;
+  String label;
+
+  @override
+  State<Quizbutton> createState() => _QuizbuttonState();
+  final quiz = const Quiz();
+}
+
+class _QuizbuttonState extends State<Quizbutton> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.all(16),
+            primary: widget.indicator,
+            elevation: 0,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            fixedSize: const Size(295, 75),
+            side: const BorderSide(color: Colors.transparent)),
+        onPressed: () {
+          setState(() {
+            if (widget.correctanswer == quizbrain.getanswer()) {
+              widget.indicator = Colors.green;
+            } else {
+              widget.indicator = Colors.red;
+            }
+          });
+        },
+        child: Text(
+          widget.label,
+          style: const TextStyle(
+            fontSize: 28,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class Quiz extends StatefulWidget {
   const Quiz({Key? key}) : super(key: key);
@@ -9,14 +62,10 @@ class Quiz extends StatefulWidget {
   State<Quiz> createState() => _QuizState();
 }
 
-var responsee = response[0];
-List<Text> response = [
-  const Text(''),
-  const Text('Correct',
-      style: TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.green)),
-  const Text('Incorrect',
-      style: TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.red))
-];
+// object instances of quizclas
+final quizbrain = Quizbrain();
+int responsenum = 0;
+List<String> response = ['Next', 'Done'];
 
 class _QuizState extends State<Quiz> {
   @override
@@ -66,89 +115,62 @@ class _QuizState extends State<Quiz> {
               ),
             ),
             Positioned(
+                top: 50,
+                left: 30,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.blue[900],
+                  ),
+                  onPressed: (() {
+                    Navigator.pop(context);
+                  }),
+                )),
+            Positioned(
                 top: 200,
                 child: Container(
-                  height: 600,
                   width: 400,
+                  height: 650,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
+                      borderRadius: BorderRadius.circular(70),
                       color: Colors.white),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 50, bottom: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30, bottom: 20),
                         child: SizedBox(
                           width: 200,
-                          child: Text('Is the sky blue?',
+                          child: Text(quizbrain.getquestion(),
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Pop',
-                                fontSize: 30,
-                              )),
+                              style: const TextStyle(
+                                  fontFamily: 'Pop', fontSize: 22)),
                         ),
                       ),
                       const SizedBox(
                         height: 50,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.all(16),
-                              primary: Colors.blue,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              fixedSize: const Size(295, 75),
-                              side:
-                                  const BorderSide(color: Colors.transparent)),
-                          onPressed: () {
-                            setState(() {
-                              responsee = response[1];
-                            });
-                          },
-                          child: const Text(
-                            'True',
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                      Quizbutton(
+                        correctanswer: true,
+                        label: 'True',
+                      ),
+                      Quizbutton(
+                        correctanswer: false,
+                        label: 'False',
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.all(16),
-                              primary: Colors.blue,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              fixedSize: const Size(295, 75),
-                              side:
-                                  const BorderSide(color: Colors.transparent)),
-                          onPressed: () {
-                            setState(() {
-                              responsee = response[2];
-                            });
-                          },
-                          child: const Text(
-                            'False',
-                            style: TextStyle(
-                              fontSize: 28,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: SizedBox(
-                          height: 50,
-                          child: responsee,
-                        ),
+                        padding: const EdgeInsets.all(25),
+                        child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                quizbrain.questionchange();
+                              });
+                            },
+                            child: Text(
+                              response[responsenum],
+                              style: const TextStyle(
+                                  fontSize: 25, fontFamily: 'Pop'),
+                            )),
                       )
                     ],
                   ),
