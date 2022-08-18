@@ -1,7 +1,7 @@
-# kwiz
+# Kwiz
 
 An interactive quiz app for learning
 
-## Getting Started
+## Description
 
 This project is a quiz app targeted at students to provide an exiting user experience that encourages learning.
