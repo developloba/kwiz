@@ -5,19 +5,46 @@ import 'signin.dart';
 
 void main() {
   runApp(MaterialApp(
-      home: const Dash(),
-      title: 'Kwiz',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.indigo,
-        secondaryHeaderColor: Colors.lightBlueAccent[200],
-        fontFamily: 'Euclid',
-        textTheme: const TextTheme(
-          bodyText1: TextStyle(fontSize: 32.0),
-          headline1: TextStyle(fontSize: 40.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        ),
-      )));
+    home: const Dash(),
+    title: 'Kwiz',
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      primaryColor: Colors.blue.shade900,
+      scaffoldBackgroundColor: Colors.white,
+      appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),
+      secondaryHeaderColor: Colors.lightBlueAccent[200],
+      fontFamily: 'Euclid',
+      textTheme: const TextTheme(
+          headline1: TextStyle(
+              fontFamily: 'Pop',
+              fontSize: 45,
+              fontWeight: FontWeight.w700,
+              color: Colors.black),
+          bodyText1:
+              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.black),
+          bodyText2: TextStyle(
+            fontFamily: 'Pop',
+            fontSize: 25,
+          )),
+    ),
+    darkTheme: ThemeData(
+      primaryColor: Colors.blue.shade100,
+      scaffoldBackgroundColor: const Color(0xFF0A0E21),
+      appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),
+      secondaryHeaderColor: Colors.blue,
+      fontFamily: 'Euclid',
+      textTheme: const TextTheme(
+          bodyText1:
+              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.white),
+          headline1: TextStyle(
+              fontFamily: 'Pop',
+              fontSize: 45,
+              fontWeight: FontWeight.w700,
+              color: Colors.white),
+          bodyText2:
+              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.grey)),
+    ),
+  ));
 }
 
 class Home extends StatelessWidget {

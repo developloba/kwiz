@@ -50,7 +50,6 @@ class _DashState extends State<Dash> {
             ),
           ),
         ),
-        backgroundColor: Colors.white,
         body: <Widget>[
           const Homepage(),
           const Explorer(),

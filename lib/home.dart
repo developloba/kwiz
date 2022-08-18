@@ -42,6 +42,7 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                   child: Text(
                     'Welcome back Korede',
                     style: TextStyle(
+                        color: Colors.black,
                         fontFamily: 'Pop',
                         fontSize: 45,
                         fontWeight: FontWeight.w700),

@@ -1,6 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-
 class Question {
   late String questionText;
   late bool questionAnswer;
@@ -15,7 +12,7 @@ class Question {
 class Quizbrain {
   int questionnumber = 0;
   int responsenumber = 0;
-  int score = 1;
+  int score = 0;
   List<Question> questionbank = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -63,5 +60,14 @@ class Quizbrain {
     } else {
       return 1;
     }
+  }
+
+  void restart() {
+    questionnumber == 0;
+  }
+
+  restartscore() {
+    score == 0;
+    questionnumber == 0;
   }
 }
