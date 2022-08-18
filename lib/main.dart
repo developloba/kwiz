@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/dash.dart';
-import 'custom.dart';
+import 'package:kwik/scaffold.dart';
+import 'custom_widgets.dart';
 import 'signin.dart';
 
 void main() {
@@ -21,7 +21,7 @@ void main() {
               fontWeight: FontWeight.w700,
               color: Colors.black),
           bodyText1:
-              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.black),
+              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.grey),
           bodyText2: TextStyle(
             fontFamily: 'Pop',
             fontSize: 25,

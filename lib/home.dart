@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/question.dart';
-import 'custom.dart';
+import 'package:kwik/quizfront.dart';
+import 'custom_widgets.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -36,23 +36,18 @@ class _HomepageState extends State<Homepage> with TickerProviderStateMixin {
                   )
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                   width: 300,
                   height: 150,
                   child: Text(
                     'Welcome back Korede',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Pop',
-                        fontSize: 45,
-                        fontWeight: FontWeight.w700),
+                    style: Theme.of(context).textTheme.headline1,
                   )),
-              const Padding(
-                padding: EdgeInsets.only(top: 5, bottom: 30),
+              Padding(
+                padding: const EdgeInsets.only(top: 5, bottom: 30),
                 child: Text(
                   'Here are some picks for you',
-                  style: TextStyle(
-                      fontFamily: 'Pop', fontSize: 25, color: Colors.grey),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
               TabBar(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/custom.dart';
+import 'package:kwik/custom_widgets.dart';
 
 class Explorer extends StatefulWidget {
   const Explorer({Key? key}) : super(key: key);

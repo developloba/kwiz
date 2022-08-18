@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'custom.dart';
-import 'dash.dart';
+import 'custom_widgets.dart';
+import 'scaffold.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);

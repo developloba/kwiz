@@ -52,14 +52,10 @@ class Quizbrain {
     return questionbank[questionnumber].questionAnswer;
   }
 
-  Object questionchange() {
-    if (questionnumber < questionbank.length - 1) {
-      return questionnumber++;
-    } else if (questionnumber == questionbank.length) {
-      return responsenumber = 1;
-    } else {
-      return 1;
-    }
+  void questionchange() {
+    (questionnumber < questionbank.length - 1)
+        ? questionnumber++
+        : responsenumber = 1;
   }
 
   void restart() {

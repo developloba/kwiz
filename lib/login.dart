@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'custom.dart';
-import 'dash.dart';
+import 'custom_widgets.dart';
+import 'scaffold.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -16,7 +16,6 @@ class _LoginState extends State<Login> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
-        
         children: [
           const Padding(
             padding: EdgeInsets.only(
