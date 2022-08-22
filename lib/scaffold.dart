@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/constant.dart';
 
 import 'package:kwik/explore.dart';
 import 'package:kwik/home.dart';
@@ -20,18 +21,20 @@ class _DashState extends State<Dash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         bottomNavigationBar: Container(
-          color: Colors.blue.shade50,
+          color: const Color.fromARGB(255, 207, 243, 249),
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(8),
             child: GNav(
               onTabChange: (int index) {
                 setState(() {
                   currentPageIndex = index;
                 });
               },
+              textStyle: heading2,
               selectedIndex: currentPageIndex,
-              backgroundColor: Colors.blue.shade50,
+              backgroundColor: const Color.fromARGB(255, 207, 243, 249),
               tabs: const <GButton>[
                 GButton(
                   icon: Icons.home,
@@ -46,7 +49,7 @@ class _DashState extends State<Dash> {
               gap: 20,
               color: Colors.black,
               iconSize: 30,
-              tabBackgroundColor: Colors.blue.shade100,
+              tabBackgroundColor: const Color.fromARGB(255, 226, 251, 255),
             ),
           ),
         ),

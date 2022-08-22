@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/custom_widgets.dart';
+import 'package:kwik/constant.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -83,8 +83,7 @@ class _AccountState extends State<Account> {
                     child: Text(
                       'I like cats but only the ones that like me back',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: 'Pop', fontSize: 20, color: Colors.grey),
+                      style: body2,
                     ),
                   ),
                   Row(
@@ -113,13 +112,7 @@ class _AccountState extends State<Account> {
                   const Text(
                     'Achievements',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Euclid', fontSize: 30, color: Colors.grey),
-                  ),
-                  Abstract(
-                    pic: Image.asset('assets/background.jpg'),
-                    width: 500,
-                    length: 400,
+                    style: body1,
                   ),
                 ],
               ),

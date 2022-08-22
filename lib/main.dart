@@ -38,7 +38,7 @@ void main() {
               TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.white),
           headline1: TextStyle(
               fontFamily: 'Pop',
-              fontSize: 45,
+              fontSize: 20,
               fontWeight: FontWeight.w700,
               color: Colors.white),
           bodyText2:

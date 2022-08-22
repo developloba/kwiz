@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/explore.dart';
+import 'package:kwik/quizfront.dart';
 import 'login.dart';
 
 class Txtfield1 extends StatefulWidget {
@@ -228,28 +228,23 @@ class _CirclePainter extends BoxPainter {
 }
 
 class Abstract extends StatelessWidget {
-  const Abstract(
-      {Key? key,
-      required this.pic,
-      this.destination = const Explorer(),
-      this.width = 0,
-      this.length = 0})
-      : super(key: key);
+  const Abstract({
+    Key? key,
+    required this.pic,
+    this.width = 0,
+    this.length = 0,
+    required this.ontap,
+  }) : super(key: key);
   final Widget pic;
   // ignore: prefer_typing_uninitialized_variables
-  final destination;
+  final bool ontap;
   final double width;
   final double length;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => destination),
-          );
-        },
+        onTap: () {},
         child: Container(
           padding: const EdgeInsets.all(10),
           width: width,
@@ -312,5 +307,49 @@ class AnswerButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Abstractcard extends StatefulWidget {
+  const Abstractcard({
+    Key? key,
+    required this.pic,
+    this.width = 0,
+    this.length = 0,
+  }) : super(key: key);
+  final Widget pic;
+  // ignore: prefer_typing_uninitialized_variables
+
+  final double width;
+  final double length;
+
+  @override
+  State<Abstractcard> createState() => _AbstractcardState();
+}
+
+class _AbstractcardState extends State<Abstractcard> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        onTap: () {
+          setState(() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Quiz()),
+            );
+          });
+        },
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          width: widget.width,
+          height: widget.length,
+          child: Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            child: widget.pic,
+          ),
+        ));
   }
 }

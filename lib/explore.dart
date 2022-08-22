@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/custom_widgets.dart';
+import 'package:kwik/constant.dart';
 
 class Explorer extends StatefulWidget {
   const Explorer({Key? key}) : super(key: key);
@@ -9,6 +9,10 @@ class Explorer extends StatefulWidget {
 }
 
 class _ExplorerState extends State<Explorer> {
+  bool createquiz() {
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -42,31 +46,8 @@ class _ExplorerState extends State<Explorer> {
                   )),
               Container(
                 padding: const EdgeInsets.all(20),
-                child: const Text('Categories',
-                    style: TextStyle(
-                        fontFamily: 'Pop', fontSize: 25, color: Colors.grey)),
+                child: const Text('Categories', style: body2),
               ),
-              Abstract(
-                  width: 500,
-                  length: 250,
-                  pic: Image.asset(
-                    'assets/maths.jpg',
-                    fit: BoxFit.fill,
-                  )),
-              Abstract(
-                  width: 500,
-                  length: 250,
-                  pic: Image.asset(
-                    'assets/sci.jpg',
-                    fit: BoxFit.fill,
-                  )),
-              Abstract(
-                  width: 500,
-                  length: 250,
-                  pic: Image.asset(
-                    'assets/trivia.jpg',
-                    fit: BoxFit.fill,
-                  )),
             ]),
       ),
     );

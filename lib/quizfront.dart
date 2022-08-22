@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'quizback.dart';
@@ -7,7 +9,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 class Quizbutton extends StatefulWidget {
   Quizbutton(
       {Key? key,
-      this.indicator = Colors.blue,
+      this.indicator = const Color.fromARGB(255, 0, 221, 233),
       required this.correctanswer,
       required this.label,
       this.tried = false})
@@ -67,7 +69,7 @@ class Quiz extends StatefulWidget {
   State<Quiz> createState() => _QuizState();
 }
 
-// object instances of quizclas
+// object instances of quizclass
 final quizbrain = Quizbrain();
 int responsenum = 0;
 List<String> response = ['Next', 'Done'];
@@ -77,164 +79,171 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/3.png',
-                ),
-                fit: BoxFit.fill)),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-                top: 0,
+      backgroundColor: Colors.white,
+      body: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+              top: 0,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                 child: Container(
-                    color: Colors.black38,
+                    color: const Color.fromARGB(124, 217, 217, 217),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height)),
-            Positioned(
-                top: 50,
-                left: 30,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new,
-                    color: Colors.white,
-                  ),
-                  onPressed: (() {
-                    Navigator.pop(context);
-                  }),
-                )),
-            Positioned(
-                top: 200,
-                child: Container(
-                  width: 400,
-                  height: 650,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(70),
-                      color: Colors.white),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30, bottom: 20),
-                        child: SizedBox(
-                          width: 200,
-                          child: Text(quizbrain.getquestion(),
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontFamily: 'Pop', fontSize: 22)),
-                        ),
+                    height: MediaQuery.of(context).size.height),
+              )),
+          Positioned(
+              top: 50,
+              left: 30,
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.grey.shade700,
+                ),
+                onPressed: (() {
+                  Navigator.pop(context);
+                }),
+              )),
+          Positioned(
+              top: 140,
+              child: Container(
+                width: 400,
+                height: 650,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(70),
+                    color: Colors.white),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30, bottom: 20),
+                      child: SizedBox(
+                        width: 200,
+                        child: Text(quizbrain.getquestion(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                fontFamily: 'Pop',
+                                fontSize: 22,
+                                color: Colors.black)),
                       ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Quizbutton(
-                        correctanswer: true,
-                        label: 'True',
-                      ),
-                      Quizbutton(
-                        correctanswer: false,
-                        label: 'False',
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(25),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                if (quizbrain.questionnumber ==
-                                    quizbrain.questionbank.length - 1) {
-                                  Alert(
-                                    style: AlertStyle(
-                                      animationType: AnimationType.shrink,
-                                      isCloseButton: false,
-                                      isOverlayTapDismiss: true,
-                                      descStyle: const TextStyle(),
-                                      descTextAlign: TextAlign.center,
-                                      animationDuration:
-                                          const Duration(milliseconds: 600),
-                                      alertBorder: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(50),
-                                      ),
-                                      titleStyle: const TextStyle(
-                                          color: Colors.red, fontSize: 30),
-                                      alertAlignment: Alignment.center,
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Quizbutton(
+                      correctanswer: true,
+                      label: 'True',
+                    ),
+                    Quizbutton(
+                      correctanswer: false,
+                      label: 'False',
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(25),
+                      child: TextButton(
+                          onPressed: () {
+                            setState(() {
+                              if (quizbrain.questionnumber ==
+                                  quizbrain.questionbank.length - 1) {
+                                Alert(
+                                  style: AlertStyle(
+                                    animationType: AnimationType.shrink,
+                                    isCloseButton: false,
+                                    isOverlayTapDismiss: true,
+                                    descStyle: const TextStyle(),
+                                    descTextAlign: TextAlign.center,
+                                    animationDuration:
+                                        const Duration(milliseconds: 600),
+                                    alertBorder: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(80),
                                     ),
-                                    context: context,
-                                    title: "Congratulations",
-                                    content: Column(
+                                    titleStyle: const TextStyle(
+                                        color: Colors.red, fontSize: 30),
+                                    alertAlignment: Alignment.center,
+                                  ),
+                                  context: context,
+                                  content: SizedBox(
+                                    width: 320,
+                                    height: 500,
+                                    child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: SizedBox(
-                                            width: 300,
-                                            child: Text(
-                                              "You've reached the end of the quiz",
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(fontSize: 25),
-                                            ),
+                                        const SizedBox(
+                                          width: 300,
+                                          child: Text(
+                                            "Congratulations",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 30,
+                                                color: Colors.red),
                                           ),
                                         ),
-                                        const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text("You've scored",
-                                              style: TextStyle(fontSize: 24)),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            const SizedBox(
+                                              width: 300,
+                                              child: Text(
+                                                "You've reached the end of the quiz",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 25),
+                                              ),
+                                            ),
+                                            const Text("You've scored",
+                                                style: TextStyle(fontSize: 24)),
+                                            Text("$result",
+                                                style: const TextStyle(
+                                                    fontSize: 45,
+                                                    color: Colors.green)),
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text("$result",
-                                              style: const TextStyle(
-                                                  fontSize: 45,
-                                                  color: Colors.green)),
-                                        ),
-                                        const Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Text('Greatjob!',
-                                              style: TextStyle(
-                                                fontSize: 25,
-                                              )),
-                                        )
+                                        const Text('Greatjob!',
+                                            style: TextStyle(
+                                              fontSize: 25,
+                                            )),
                                       ],
                                     ),
-                                    buttons: [
-                                      DialogButton(
-                                        radius: BorderRadius.circular(25),
-                                        onPressed: () {
-                                          setState(() {
-                                            quizbrain.restart();
-                                            quizbrain.restartscore();
-                                          });
-                                        },
-                                        width: 120,
-                                        child: const Text(
-                                          "Restart",
-                                          style: TextStyle(
-                                              fontFamily: 'Pop',
-                                              color: Colors.white,
-                                              fontSize: 20),
-                                        ),
-                                      )
-                                    ],
-                                  ).show();
-                                } else {
-                                  quizbrain.questionchange();
-                                }
-                              });
-                            },
-                            child: Text(
-                              response[responsenum],
-                              style: const TextStyle(
-                                  fontSize: 25, fontFamily: 'Pop'),
-                            )),
-                      )
-                    ],
-                  ),
-                ))
-          ],
-        ),
+                                  ),
+                                  buttons: [
+                                    DialogButton(
+                                      radius: BorderRadius.circular(25),
+                                      onPressed: () {
+                                        setState(() {
+                                          quizbrain.restart();
+                                          quizbrain.restartscore();
+                                        });
+                                      },
+                                      width: 120,
+                                      child: const Text(
+                                        "Restart",
+                                        style: TextStyle(
+                                            fontFamily: 'Pop',
+                                            color: Colors.white,
+                                            fontSize: 20),
+                                      ),
+                                    )
+                                  ],
+                                ).show();
+                              } else {
+                                quizbrain.questionchange();
+                              }
+                            });
+                          },
+                          child: Text(
+                            response[responsenum],
+                            style: const TextStyle(
+                                fontSize: 25,
+                                fontFamily: 'Pop',
+                                color: Color.fromARGB(255, 4, 159, 167)),
+                          )),
+                    )
+                  ],
+                ),
+              ))
+        ],
       ),
     );
   }
