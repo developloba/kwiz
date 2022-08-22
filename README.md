@@ -1,16 +1,10 @@
-# kwiz
+# Kwiz
 
-A new Flutter project.
+An interactive quiz app for learning
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project is a quiz app targeted at students to provide an exiting user experience that encourages 
+learning.
+![flutter_06](https://user-images.githubusercontent.com/95104961/185492918-3058020a-2fe7-4eb9-bace-f660e206c277.png)
+![flutter_05](https://user-images.githubusercontent.com/95104961/185492590-c4cf6949-a2af-4e34-bef0-c15ad9368fc9.png)
