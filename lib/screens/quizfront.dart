@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:kwik/utils/constant.dart';
 
 import 'quizback.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -71,6 +72,7 @@ class Quiz extends StatefulWidget {
 
 // object instances of quizclass
 final quizbrain = Quizbrain();
+var numb = quizbrain.questionnumber + 1;
 int responsenum = 0;
 List<String> response = ['Next', 'Done'];
 double result = quizbrain.score / quizbrain.questionbank.length * 100;
@@ -116,6 +118,13 @@ class _QuizState extends State<Quiz> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Text(
+                        'Question $numb',
+                        style: heading2,
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.only(top: 30, bottom: 20),
                       child: SizedBox(
                         width: 200,
@@ -123,7 +132,7 @@ class _QuizState extends State<Quiz> {
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 fontFamily: 'Pop',
-                                fontSize: 22,
+                                fontSize: 20,
                                 color: Colors.black)),
                       ),
                     ),
@@ -146,87 +155,82 @@ class _QuizState extends State<Quiz> {
                               if (quizbrain.questionnumber ==
                                   quizbrain.questionbank.length - 1) {
                                 Alert(
-                                  style: AlertStyle(
-                                    animationType: AnimationType.shrink,
-                                    isCloseButton: false,
-                                    isOverlayTapDismiss: true,
-                                    descStyle: const TextStyle(),
-                                    descTextAlign: TextAlign.center,
-                                    animationDuration:
-                                        const Duration(milliseconds: 600),
-                                    alertBorder: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80),
+                                    style: AlertStyle(
+                                      animationType: AnimationType.shrink,
+                                      isCloseButton: false,
+                                      isOverlayTapDismiss: true,
+                                      descStyle: const TextStyle(),
+                                      descTextAlign: TextAlign.center,
+                                      animationDuration:
+                                          const Duration(milliseconds: 600),
+                                      alertBorder: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(80),
+                                      ),
+                                      titleStyle: const TextStyle(
+                                          color: Colors.red, fontSize: 30),
+                                      alertAlignment: Alignment.center,
                                     ),
-                                    titleStyle: const TextStyle(
-                                        color: Colors.red, fontSize: 30),
-                                    alertAlignment: Alignment.center,
-                                  ),
-                                  context: context,
-                                  content: SizedBox(
-                                    width: 320,
-                                    height: 500,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const SizedBox(
-                                          width: 300,
-                                          child: Text(
-                                            "Congratulations",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 30,
-                                                color: Colors.red),
+                                    context: context,
+                                    content: SizedBox(
+                                      width: 320,
+                                      height: 500,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Text(
+                                            'You scored',
+                                            style: TextStyle(fontSize: 30),
                                           ),
-                                        ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            const SizedBox(
-                                              width: 300,
-                                              child: Text(
-                                                "You've reached the end of the quiz",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 25),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            height: 200,
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    width: 7,
+                                                    color: Colors.amber),
+                                                shape: BoxShape.circle),
+                                            child: Text(
+                                              '$result%',
+                                              style: const TextStyle(
+                                                  fontSize: 40,
+                                                  color: Colors.amber),
+                                            ),
+                                          ),
+                                          const Text(
+                                            "That's higher than 40% of our users",
+                                            style: TextStyle(fontSize: 30),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          SizedBox(
+                                            width: 120,
+                                            height: 60,
+                                            child: DialogButton(
+                                              radius: BorderRadius.circular(25),
+                                              onPressed: () {
+                                                setState(() {
+                                                  quizbrain.restart();
+                                                  quizbrain.restartscore();
+                                                  Navigator.pop(context);
+                                                });
+                                              },
+                                              width: 120,
+                                              color: Colors.green,
+                                              child: const Text(
+                                                "Done",
+                                                style: TextStyle(
+                                                    fontFamily: 'Pop',
+                                                    color: Colors.white,
+                                                    fontSize: 20),
                                               ),
                                             ),
-                                            const Text("You've scored",
-                                                style: TextStyle(fontSize: 24)),
-                                            Text("$result",
-                                                style: const TextStyle(
-                                                    fontSize: 45,
-                                                    color: Colors.green)),
-                                          ],
-                                        ),
-                                        const Text('Greatjob!',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                  buttons: [
-                                    DialogButton(
-                                      radius: BorderRadius.circular(25),
-                                      onPressed: () {
-                                        setState(() {
-                                          quizbrain.restart();
-                                          quizbrain.restartscore();
-                                        });
-                                      },
-                                      width: 120,
-                                      child: const Text(
-                                        "Restart",
-                                        style: TextStyle(
-                                            fontFamily: 'Pop',
-                                            color: Colors.white,
-                                            fontSize: 20),
+                                          )
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ).show();
+                                    ),
+                                    buttons: []).show();
                               } else {
                                 quizbrain.questionchange();
                               }

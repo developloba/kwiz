@@ -1,3 +1,5 @@
+import 'package:kwik/screens/quizfront.dart';
+
 class Question {
   late String questionText;
   late bool questionAnswer;
@@ -56,6 +58,7 @@ class Quizbrain {
     (questionnumber < questionbank.length - 1)
         ? questionnumber++
         : responsenumber = 1;
+    numb++;
   }
 
   void restart() {

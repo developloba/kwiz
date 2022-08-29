@@ -65,14 +65,14 @@ class _HomepageState extends State<Homepage> {
                         controller: pageController,
                         children: [
                           Abstractcard(
-                            destination: const Quiz(),
+                            destination: const Info(),
                             pic: Image.asset(
                               'assets/maths.jpg',
                               fit: BoxFit.fill,
                             ),
                           ),
                           Abstractcard(
-                            destination: const Quiz(),
+                            destination: const Info(),
                             pic: Image.asset(
                               'assets/sci.jpg',
                               fit: BoxFit.fill,

@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/screens/explore.dart';

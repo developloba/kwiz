@@ -11,10 +11,8 @@ const tabbartextstyle = TextStyle(
   fontFamily: 'Pop',
   fontSize: 20,
 );
-const heading2 = TextStyle(
-    fontFamily: 'Pop',
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-    color: Colors.black);
+const heading2 =
+    TextStyle(fontFamily: 'Euclid', fontSize: 30, color: Colors.black);
 Color primarycolor = const Color.fromARGB(221, 22, 54, 198);
 Color secondarycolor = const Color.fromARGB(255, 0, 221, 233);
+const body3 = TextStyle(fontFamily: 'Pop', fontSize: 16, color: Colors.black);
