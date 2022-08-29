@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/constant.dart';
+import 'package:kwik/utils/constant.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);

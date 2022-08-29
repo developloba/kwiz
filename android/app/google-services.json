@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1062181003289",
+    "project_id": "kwiz-080",
+    "storage_bucket": "kwiz-080.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1062181003289:android:695029773f91494b304a88",
+        "android_client_info": {
+          "package_name": "com.developloba.kwiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1062181003289-v3s2n70vp1oc59hho9gale4hpeelbd2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3WBOvo-YEm_wm8lCVRKgkb6WBMcP8ALM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1062181003289-v3s2n70vp1oc59hho9gale4hpeelbd2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

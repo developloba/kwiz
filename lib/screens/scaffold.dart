@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/constant.dart';
+import 'package:kwik/utils/constant.dart';
 
-import 'package:kwik/explore.dart';
-import 'package:kwik/home.dart';
+import 'package:kwik/screens/explore.dart';
+import 'package:kwik/screens/home.dart';
 
-import 'package:kwik/profile.dart';
+import 'package:kwik/screens/profile.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Dash extends StatefulWidget {

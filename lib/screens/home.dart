@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/constant.dart';
-import 'custom_widgets.dart';
+import 'package:kwik/utils/constant.dart';
+import 'package:kwik/screens/quizfront.dart';
+import 'package:kwik/screens/quizinfo.dart';
+import '../utils/custom_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Homepage extends StatefulWidget {
@@ -43,7 +45,7 @@ class _HomepageState extends State<Homepage> {
                     width: 300,
                     height: 150,
                     child: Text(
-                      'Welcome back Sasha',
+                      'Welcome back Korede',
                       style: heading,
                     )),
                 const Padding(
@@ -63,18 +65,21 @@ class _HomepageState extends State<Homepage> {
                         controller: pageController,
                         children: [
                           Abstractcard(
+                            destination: const Quiz(),
                             pic: Image.asset(
                               'assets/maths.jpg',
                               fit: BoxFit.fill,
                             ),
                           ),
                           Abstractcard(
+                            destination: const Quiz(),
                             pic: Image.asset(
                               'assets/sci.jpg',
                               fit: BoxFit.fill,
                             ),
                           ),
                           Abstractcard(
+                            destination: const Info(),
                             pic: Image.asset(
                               'assets/trivia.jpg',
                               fit: BoxFit.fill,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/quizfront.dart';
-import 'login.dart';
+import 'package:kwik/screens/login.dart';
+import '../screens/login.dart';
 
 class Txtfield1 extends StatefulWidget {
   final double width;
@@ -10,7 +10,8 @@ class Txtfield1 extends StatefulWidget {
   final double top;
   final double side;
   final double bottom;
-  const Txtfield1(
+  var val;
+  Txtfield1(
       {Key? key,
       this.width = 400,
       this.text = 'Username',
@@ -18,7 +19,8 @@ class Txtfield1 extends StatefulWidget {
       this.pad = 0,
       this.top = 0,
       this.side = 0,
-      this.bottom = 0})
+      this.bottom = 0,
+      this.val})
       : super(key: key);
 
   @override
@@ -40,6 +42,9 @@ class _Txtfield1State extends State<Txtfield1> {
           width: widget.width,
           child: TextFormField(
               obscureText: widget.dots,
+              onChanged: ((value) {
+                widget.val = value;
+              }),
               decoration: InputDecoration(
                   label: Text(
                     widget.text,
@@ -125,19 +130,18 @@ class Button extends StatefulWidget {
       this.width = 295,
       this.height = 75,
       this.label = 'Login',
-      this.destination = const Login(),
       this.fill = Colors.blue,
       this.outline = Colors.transparent,
-      this.labelcolor = Colors.white})
+      this.labelcolor = Colors.white,
+      required this.onpress})
       : super(key: key);
   final double width;
   final double height;
   final String label;
-  // ignore: prefer_typing_uninitialized_variables
-  final destination;
   final Color fill;
   final Color outline;
   final Color labelcolor;
+  final void Function()? onpress;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -156,10 +160,7 @@ class _ButtonState extends State<Button> {
           fixedSize: Size(widget.width, widget.height),
           side: BorderSide(color: widget.outline)),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => widget.destination),
-        );
+        widget.onpress;
       },
       child: Text(
         widget.label,
@@ -311,18 +312,19 @@ class AnswerButton extends StatelessWidget {
 }
 
 class Abstractcard extends StatefulWidget {
-  const Abstractcard({
-    Key? key,
-    required this.pic,
-    this.width = 0,
-    this.length = 0,
-  }) : super(key: key);
+  const Abstractcard(
+      {Key? key,
+      required this.pic,
+      this.width = 0,
+      this.length = 0,
+      this.destination})
+      : super(key: key);
   final Widget pic;
   // ignore: prefer_typing_uninitialized_variables
 
   final double width;
   final double length;
-
+  final destination;
   @override
   State<Abstractcard> createState() => _AbstractcardState();
 }
@@ -335,7 +337,7 @@ class _AbstractcardState extends State<Abstractcard> {
           setState(() {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Quiz()),
+              MaterialPageRoute(builder: (context) => widget.destination),
             );
           });
         },
@@ -351,5 +353,58 @@ class _AbstractcardState extends State<Abstractcard> {
             child: widget.pic,
           ),
         ));
+  }
+}
+
+class NavButton extends StatefulWidget {
+  const NavButton(
+      {Key? key,
+      this.width = 295,
+      this.height = 75,
+      this.label = 'Login',
+      this.destination = const Login(),
+      this.fill = Colors.blue,
+      this.outline = Colors.transparent,
+      this.labelcolor = Colors.white})
+      : super(key: key);
+  final double width;
+  final double height;
+  final String label;
+  // ignore: prefer_typing_uninitialized_variables
+  final destination;
+  final Color fill;
+  final Color outline;
+  final Color labelcolor;
+
+  @override
+  State<NavButton> createState() => _NavButtonState();
+}
+
+class _NavButtonState extends State<NavButton> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(16),
+          primary: widget.fill,
+          elevation: 0,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
+          fixedSize: Size(widget.width, widget.height),
+          side: BorderSide(color: widget.outline)),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => widget.destination),
+        );
+      },
+      child: Text(
+        widget.label,
+        style: TextStyle(
+          fontSize: 28,
+          color: widget.labelcolor,
+        ),
+      ),
+    );
   }
 }

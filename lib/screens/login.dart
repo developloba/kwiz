@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'custom_widgets.dart';
-import 'scaffold.dart';
+import '../utils/custom_widgets.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,6 +9,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late String username;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-          const Txtfield1(
+          Txtfield1(
             pad: 10,
             width: 450,
           ),
@@ -54,10 +54,10 @@ class _LoginState extends State<Login> {
           ),
           const SizedBox(height: 30),
           Button(
-            destination: const Dash(),
             width: 450,
             height: 65,
             fill: Colors.blue.shade900,
+            onpress: () {},
           ),
           const Padding(
             padding: EdgeInsets.all(20),

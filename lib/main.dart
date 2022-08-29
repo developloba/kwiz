@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kwik/scaffold.dart';
-import 'custom_widgets.dart';
-import 'signin.dart';
+import 'package:kwik/utils/constant.dart';
+import 'package:kwik/screens/explore.dart';
+import 'package:kwik/screens/login.dart';
+import 'package:kwik/screens/profile.dart';
+import 'package:kwik/screens/quizfront.dart';
+import 'package:kwik/screens/scaffold.dart';
+import 'utils/custom_widgets.dart';
+import 'screens/signin.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: const Dash(),
     title: 'Kwiz',
+    home: const Dash(),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primaryColor: Colors.blue.shade900,
@@ -34,16 +40,24 @@ void main() {
       secondaryHeaderColor: Colors.blue,
       fontFamily: 'Euclid',
       textTheme: const TextTheme(
-          bodyText1:
-              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.white),
-          headline1: TextStyle(
-              fontFamily: 'Pop',
-              fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.white),
-          bodyText2:
-              TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.grey)),
+        bodyText1:
+            TextStyle(fontFamily: 'Pop', fontSize: 25, color: Colors.white),
+        headline1: TextStyle(
+            fontFamily: 'Pop',
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Colors.white),
+      ),
     ),
+    routes: {
+      'Loginscreen': (context) => const Login(),
+      'Signupscreen': (context) => const Signup(),
+      'Scaffold': (context) => const Scaffold(),
+      'Home': (context) => const Dash(),
+      'Explorer': (context) => const Explorer(),
+      'Profile': (context) => const Account(),
+      'Quiz': (context) => const Quiz()
+    },
   ));
 }
 
@@ -83,16 +97,17 @@ class Home extends StatelessWidget {
               width: 425,
               decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage('assets/2.png')))),
-          Button(
+          NavButton(
+            fill: primarycolor,
             width: 450,
-            fill: Colors.blue.shade900,
+            destination: const Login(),
           ),
           const SizedBox(
             height: 20,
           ),
-          Button(
+          NavButton(
             width: 450,
-            fill: Colors.transparent,
+            fill: Colors.white,
             outline: Colors.blue.shade900,
             label: 'Sign Up',
             labelcolor: Colors.blue.shade900,
