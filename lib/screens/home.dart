@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
-import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/screens/quizinfo.dart';
 import '../utils/custom_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -45,7 +44,7 @@ class _HomepageState extends State<Homepage> {
                     width: 300,
                     height: 150,
                     child: Text(
-                      'Welcome back Korede',
+                      'Welcome back Sasha',
                       style: heading,
                     )),
                 const Padding(

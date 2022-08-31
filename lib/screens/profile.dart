@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
+import 'package:kwik/utils/icon.dart';
+import 'package:kwik/utils/notifcard.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -11,44 +13,44 @@ class Account extends StatefulWidget {
 class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: double.maxFinite,
-      width: double.maxFinite,
-      child: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          Positioned(
-            child: Container(
-              height: 900,
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.fill, image: AssetImage('assets/leaf.jpg'))),
-            ),
-          ),
-          Positioned(
-              top: 50,
-              right: 50,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                  size: 30,
-                ),
-                onPressed: () {},
-              )),
-          Positioned(
-              top: 180,
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: double.maxFinite,
+        child: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Positioned(
               child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.white,
-                ),
-              )),
-          Positioned(
-            top: 130,
-            child: SingleChildScrollView(
+                height: 900,
+                decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/background.jpg'))),
+              ),
+            ),
+            Positioned(
+                top: 50,
+                right: 50,
+                child: TextButton(
+                  child: const Appicon(
+                    icon: Icons.settings,
+                    color: Colors.black,
+                    backcolor: Colors.black26,
+                  ),
+                  onPressed: () {},
+                )),
+            Positioned(
+                top: 180,
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: Colors.white,
+                  ),
+                )),
+            Positioned(
+              top: 130,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -109,16 +111,36 @@ class _AccountState extends State<Account> {
                       )
                     ],
                   ),
-                  const Text(
-                    'Achievements',
-                    textAlign: TextAlign.center,
-                    style: body1,
+                  const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      'Achievements',
+                      textAlign: TextAlign.center,
+                      style: heading2,
+                    ),
                   ),
+                  Notifcard(
+                      primary: Colors.white,
+                      cardimage: Image.asset('assets/2.png'),
+                      cardmessage:
+                          'Congratulations on completing Mathematics for dummies',
+                      secondary: Colors.black),
+                  Notifcard(
+                      primary: const Color.fromARGB(234, 255, 244, 162),
+                      secondary: const Color.fromARGB(234, 89, 85, 56),
+                      cardimage: Image.asset('assets/badge.png'),
+                      cardmessage: 'Mary just earned the not a goner badge'),
+                  Notifcard(
+                      primary: const Color.fromARGB(234, 112, 112, 237),
+                      secondary: const Color.fromARGB(234, 10, 10, 75),
+                      cardimage: Image.asset('assets/award.png'),
+                      cardmessage:
+                          'You recieved the probably going to have a future award')
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

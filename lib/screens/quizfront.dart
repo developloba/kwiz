@@ -118,7 +118,7 @@ class _QuizState extends State<Quiz> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       child: Text(
                         'Question $numb',
                         style: heading2,

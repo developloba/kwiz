@@ -11,7 +11,6 @@ import 'screens/signin.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Kwiz',
-    home: const Dash(),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primaryColor: Colors.blue.shade900,
@@ -49,13 +48,14 @@ void main() {
       ),
     ),
     routes: {
-      'Loginscreen': (context) => const Login(),
-      'Signupscreen': (context) => const Signup(),
-      'Scaffold': (context) => const Scaffold(),
-      'Home': (context) => const Dash(),
-      'Explorer': (context) => const Explorer(),
-      'Profile': (context) => const Account(),
-      'Quiz': (context) => const Quiz()
+      '/': (context) => const Home(),
+      '/Loginscreen': (context) => const Login(),
+      '/Signupscreen': (context) => const Signup(),
+      '/Scaffold': (context) => const Scaffold(),
+      '/Home': (context) => const Dash(),
+      '/Explorer': (context) => const Explorer(),
+      '/Profile': (context) => const Account(),
+      '/Quiz': (context) => const Quiz()
     },
   ));
 }
@@ -96,10 +96,13 @@ class Home extends StatelessWidget {
               width: 425,
               decoration: const BoxDecoration(
                   image: DecorationImage(image: AssetImage('assets/2.png')))),
-          NavButton(
-            fill: primarycolor,
-            width: 450,
-            destination: const Login(),
+          Hero(
+            tag: 'loginbutt',
+            child: NavButton(
+              fill: primarycolor,
+              width: 450,
+              destination: const Login(),
+            ),
           ),
           const SizedBox(
             height: 20,

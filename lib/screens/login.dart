@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/screens/scaffold.dart';
 import '../utils/custom_widgets.dart';
 
 class Login extends StatefulWidget {
@@ -53,11 +54,11 @@ class _LoginState extends State<Login> {
             ),
           ),
           const SizedBox(height: 30),
-          Button(
+          NavButton(
             width: 450,
             height: 65,
             fill: Colors.blue.shade900,
-            onpress: () {},
+            destination: const Dash(),
           ),
           const Padding(
             padding: EdgeInsets.all(20),
