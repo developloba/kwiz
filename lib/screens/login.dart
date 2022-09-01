@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/scaffold.dart';
+import 'package:kwik/utils/constant.dart';
 import '../utils/custom_widgets.dart';
 
 class Login extends StatefulWidget {
@@ -57,7 +58,7 @@ class _LoginState extends State<Login> {
           NavButton(
             width: 450,
             height: 65,
-            fill: Colors.blue.shade900,
+            fill: primarycolor,
             destination: const Dash(),
           ),
           const Padding(
@@ -84,8 +85,7 @@ class _LoginState extends State<Login> {
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(17),
-                        side:
-                            BorderSide(color: Colors.blue.shade900, width: 3))),
+                        side: BorderSide(color: primarycolor, width: 3))),
                 onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

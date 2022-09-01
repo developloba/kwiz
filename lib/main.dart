@@ -7,8 +7,17 @@ import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/screens/scaffold.dart';
 import 'utils/custom_widgets.dart';
 import 'screens/signin.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    name: 'kwiz-080',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MaterialApp(
     title: 'Kwiz',
     debugShowCheckedModeBanner: false,

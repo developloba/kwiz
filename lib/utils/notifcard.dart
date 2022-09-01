@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Notifcard extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   const Notifcard(
-      {Key? key,required this.primary,
+      {Key? key,
+      required this.primary,
       required this.secondary,
       required this.cardimage,
       required this.cardmessage})

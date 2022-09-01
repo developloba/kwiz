@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/login.dart';
 import '../screens/login.dart';
@@ -10,6 +12,7 @@ class Txtfield1 extends StatefulWidget {
   final double top;
   final double side;
   final double bottom;
+  // ignore: prefer_typing_uninitialized_variables
   var val;
   Txtfield1(
       {Key? key,
@@ -324,6 +327,7 @@ class Abstractcard extends StatefulWidget {
 
   final double width;
   final double length;
+  // ignore: prefer_typing_uninitialized_variables
   final destination;
   @override
   State<Abstractcard> createState() => _AbstractcardState();

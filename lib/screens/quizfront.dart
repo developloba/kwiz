@@ -2,66 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
+import 'package:kwik/utils/quizbutton.dart';
 
 import 'quizback.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 // ignore: must_be_immutable
-class Quizbutton extends StatefulWidget {
-  Quizbutton(
-      {Key? key,
-      this.indicator = const Color.fromARGB(255, 0, 221, 233),
-      required this.correctanswer,
-      required this.label,
-      this.tried = false})
-      : super(key: key);
-  Color indicator;
-  bool correctanswer;
-  String label;
-  bool tried;
-
-  @override
-  State<Quizbutton> createState() => _QuizbuttonState();
-  final quiz = const Quiz();
-}
-
-class _QuizbuttonState extends State<Quizbutton> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(16),
-            primary: widget.indicator,
-            elevation: 0,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            fixedSize: const Size(295, 75),
-            side: const BorderSide(color: Colors.transparent)),
-        onPressed: () {
-          setState(() {
-            if (widget.correctanswer == quizbrain.getanswer() &&
-                widget.tried == false) {
-              widget.indicator = Colors.green;
-              quizbrain.score++;
-            } else {
-              widget.indicator = Colors.red;
-              widget.tried = true;
-            }
-          });
-        },
-        child: Text(
-          widget.label,
-          style: const TextStyle(
-            fontSize: 28,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class Quiz extends StatefulWidget {
   const Quiz({Key? key}) : super(key: key);
@@ -70,14 +16,14 @@ class Quiz extends StatefulWidget {
   State<Quiz> createState() => _QuizState();
 }
 
-// object instances of quizclass
 final quizbrain = Quizbrain();
 var numb = quizbrain.questionnumber + 1;
 int responsenum = 0;
 List<String> response = ['Next', 'Done'];
 double result = quizbrain.score / quizbrain.questionbank.length * 100;
 
-class _QuizState extends State<Quiz> {
+class _QuizState extends State<Quiz> with TickerProviderStateMixin {
+  late AnimationController controls;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,6 +100,12 @@ class _QuizState extends State<Quiz> {
                             setState(() {
                               if (quizbrain.questionnumber ==
                                   quizbrain.questionbank.length - 1) {
+                                controls = AnimationController(
+                                    upperBound: result,
+                                    vsync: this,
+                                    duration: const Duration(seconds: 1));
+                                controls.forward();
+
                                 Alert(
                                     style: AlertStyle(
                                       animationType: AnimationType.shrink,
@@ -192,11 +144,16 @@ class _QuizState extends State<Quiz> {
                                                     width: 7,
                                                     color: Colors.amber),
                                                 shape: BoxShape.circle),
-                                            child: Text(
-                                              '$result%',
-                                              style: const TextStyle(
-                                                  fontSize: 40,
-                                                  color: Colors.amber),
+                                            child: AnimatedBuilder(
+                                              animation: controls,
+                                              builder: (context, child) {
+                                                return Text(
+                                                  '${controls.value.toInt()}%',
+                                                  style: const TextStyle(
+                                                      fontSize: 40,
+                                                      color: Colors.amber),
+                                                );
+                                              },
                                             ),
                                           ),
                                           const Text(
