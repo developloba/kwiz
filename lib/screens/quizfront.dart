@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
-import 'package:kwik/utils/quizbutton.dart';
+import 'package:kwik/components/quizbutton.dart';
 
-import 'quizback.dart';
+import '../utils/quizback.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 // ignore: must_be_immutable

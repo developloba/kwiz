@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/constant.dart';
-import 'package:kwik/utils/icon.dart';
-import 'package:kwik/utils/notifcard.dart';
+import 'package:kwik/components/icon.dart';
+import 'package:kwik/components/notifcard.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);

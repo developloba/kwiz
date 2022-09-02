@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
-
-import '../utils/custom_widgets.dart';
+import '../components/custom_widgets.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -12,9 +11,9 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-  late String email;
-  late String password;
-  final auth = FirebaseAuth.instance;
+  TextEditingController emailcontrol = TextEditingController();
+  TextEditingController passwordcontrol = TextEditingController();
+  final authmanager = AuthManager();
 
   @override
   Widget build(BuildContext context) {
@@ -42,70 +41,34 @@ class _SignupState extends State<Signup> {
               ),
             ),
           ),
-          Padding(
-            padding:
-                const EdgeInsets.only(top: 20, right: 30, left: 30, bottom: 10),
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: SizedBox(
-                width: 450,
-                child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    obscureText: false,
-                    onChanged: ((value) {
-                      email = value;
-                    }),
-                    decoration: InputDecoration(
-                        label: const Text('Email'),
-                        labelStyle: const TextStyle(fontSize: 20),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(17)))),
-              ),
-            ),
+          Txtfield1(
+            controls: emailcontrol,
+            text: 'Email',
           ),
           Padding(
             padding:
                 const EdgeInsets.only(top: 0, bottom: 0, right: 0, left: 0),
             child: Padding(
-              padding: const EdgeInsets.all(25),
-              child: SizedBox(
-                width: 450,
-                child: TextFormField(
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  obscureText: !dots,
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              dots = !dots;
-                            });
-                          },
-                          icon: Icon(
-                              dots ? Icons.visibility : Icons.visibility_off)),
-                      label: const Text('Password'),
-                      labelStyle: const TextStyle(fontSize: 20),
-                      hintText: 'Enter a tough password!',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(17))),
-                ),
-              ),
-            ),
+                padding: const EdgeInsets.all(25),
+                child: PasswordField(controls: passwordcontrol)),
           ),
           const SizedBox(height: 30),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.all(16),
-                primary: primarycolor,
+                backgroundColor: primarycolor,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(17)),
                 fixedSize: const Size(450, 65),
                 side: const BorderSide(color: Colors.transparent)),
             onPressed: () {
-              auth.createUserWithEmailAndPassword(
-                  email: email, password: password);
+              try {
+                authmanager.createuser(
+                    emailcontrol.text.trim(), passwordcontrol.text.trim());
+              } catch (e) {
+                print(e);
+              }
             },
             child: const Text(
               'Sign Up',
@@ -135,7 +98,7 @@ class _SignupState extends State<Signup> {
             height: 65,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    backgroundColor: Colors.white,
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(17),

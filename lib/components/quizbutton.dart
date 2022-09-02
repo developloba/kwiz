@@ -29,7 +29,7 @@ class _QuizbuttonState extends State<Quizbutton> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(16),
-            primary: widget.indicator,
+            backgroundColor: widget.indicator,
             elevation: 0,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

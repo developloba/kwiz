@@ -5,7 +5,7 @@ import 'package:kwik/screens/login.dart';
 import 'package:kwik/screens/profile.dart';
 import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/screens/scaffold.dart';
-import 'utils/custom_widgets.dart';
+import 'components/custom_widgets.dart';
 import 'screens/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

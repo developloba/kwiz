@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/login.dart';
-import '../screens/login.dart';
 
 class Txtfield1 extends StatefulWidget {
   final double width;
@@ -12,19 +11,20 @@ class Txtfield1 extends StatefulWidget {
   final double top;
   final double side;
   final double bottom;
+  final TextEditingController controls;
   // ignore: prefer_typing_uninitialized_variables
   var val;
-  Txtfield1(
-      {Key? key,
-      this.width = 400,
-      this.text = 'Username',
-      this.dots = false,
-      this.pad = 0,
-      this.top = 0,
-      this.side = 0,
-      this.bottom = 0,
-      this.val})
-      : super(key: key);
+  Txtfield1({
+    Key? key,
+    this.width = 400,
+    this.text = 'Username',
+    this.dots = false,
+    this.pad = 0,
+    this.top = 0,
+    this.side = 0,
+    required this.controls,
+    this.bottom = 0,
+  }) : super(key: key);
 
   @override
   State<Txtfield1> createState() => _Txtfield1State();
@@ -45,9 +45,7 @@ class _Txtfield1State extends State<Txtfield1> {
           width: widget.width,
           child: TextFormField(
               obscureText: widget.dots,
-              onChanged: ((value) {
-                widget.val = value;
-              }),
+              controller: widget.controls,
               decoration: InputDecoration(
                   label: Text(
                     widget.text,
@@ -68,6 +66,7 @@ class PasswordField extends StatefulWidget {
   final double side;
   final double top;
   final double butt;
+  final TextEditingController controls;
 
   const PasswordField(
       {Key? key,
@@ -76,7 +75,8 @@ class PasswordField extends StatefulWidget {
       this.pad = 25,
       this.butt = 0,
       this.top = 0,
-      this.side = 0})
+      this.side = 0,
+      required this.controls})
       : super(key: key);
 
   @override
@@ -105,6 +105,7 @@ class _PasswordFieldState extends State<PasswordField> {
         child: SizedBox(
           width: widget.width,
           child: TextFormField(
+            controller: widget.controls,
             obscureText: !dots,
             decoration: InputDecoration(
                 suffixIcon: IconButton(
@@ -144,7 +145,7 @@ class Button extends StatefulWidget {
   final Color fill;
   final Color outline;
   final Color labelcolor;
-  final void Function()? onpress;
+  final void Function() onpress;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -156,7 +157,7 @@ class _ButtonState extends State<Button> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(16),
-          primary: widget.fill,
+          backgroundColor: widget.fill,
           elevation: 0,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
@@ -184,7 +185,7 @@ class Component extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(16),
-        primary: Colors.white24,
+        backgroundColor: Colors.white24,
         elevation: 0,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -295,7 +296,7 @@ class AnswerButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(16),
-            primary: fill,
+            backgroundColor: fill,
             elevation: 0,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(radius)),
@@ -390,7 +391,7 @@ class _NavButtonState extends State<NavButton> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.all(16),
-          primary: widget.fill,
+          backgroundColor: widget.fill,
           elevation: 0,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/utils/constant.dart';
 
-import '../utils/icon.dart';
+import '../components/icon.dart';
 
 class Info extends StatelessWidget {
   const Info({Key? key}) : super(key: key);
@@ -72,8 +72,8 @@ class Info extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50)),
-                                  elevation: 0,
-                                  primary: primarycolor),
+                                  backgroundColor: primarycolor,
+                                  elevation: 0),
                               onPressed: () {
                                 Navigator.push(context, MaterialPageRoute(
                                   builder: (context) {
@@ -202,8 +202,8 @@ class Info extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50)),
-                              elevation: 0,
-                              primary: primarycolor),
+                              backgroundColor: primarycolor,
+                              elevation: 0),
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
