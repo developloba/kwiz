@@ -7,8 +7,6 @@ import 'package:kwik/components/quizbutton.dart';
 import '../utils/quizback.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-// ignore: must_be_immutable
-
 class Quiz extends StatefulWidget {
   const Quiz({Key? key}) : super(key: key);
 

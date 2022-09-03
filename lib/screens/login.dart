@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:kwik/screens/scaffold.dart';
+import 'package:kwik/components/progressspinner.dart';
+import 'package:kwik/screens/signin.dart';
 import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../components/custom_widgets.dart';
 
 class Login extends StatefulWidget {
@@ -25,19 +24,8 @@ class _LoginState extends State<Login> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: ModalProgressHUD(
-        blur: 20,
-        progressIndicator: SpinKitChasingDots(
-          itemBuilder: (BuildContext context, int index) {
-            return DecoratedBox(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: index.isEven ? primarycolor : secondarycolor,
-              ),
-            );
-          },
-        ),
-        inAsyncCall: spinning,
+      body: Spinner(
+        inAsyncall: spinning,
         child: Column(
           children: [
             const Padding(
@@ -88,12 +76,12 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(17)),
                   fixedSize: const Size(450, 65),
                   side: const BorderSide(color: Colors.transparent)),
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   spinning = true;
                 });
                 try {
-                  authmanger.loginuser(
+                  await authmanger.loginuser(
                       emailcontrol.text.trim(), passwordcontrol.text.trim());
                 } catch (e) {
                   print(e);
@@ -161,23 +149,30 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 40),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                        text: 'New here? Create an account',
-                        style: TextStyle(
-                            fontFamily: 'Euclid',
-                            color: Colors.grey,
-                            fontSize: 18)),
-                    TextSpan(
-                        text: ' here',
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('New here? Create an account',
+                      style: TextStyle(
+                          fontFamily: 'Euclid',
+                          color: Colors.grey,
+                          fontSize: 18)),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return const Signup();
+                        }),
+                      );
+                    },
+                    child: Text('here',
                         style: TextStyle(
                             fontFamily: 'Euclid',
                             color: Colors.blue.shade900,
                             fontSize: 18)),
-                  ],
-                ),
+                  )
+                ],
               ),
             )
           ],
