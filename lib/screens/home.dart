@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/screens/quizinfo.dart';
 import '../components/custom_widgets.dart';
@@ -12,6 +13,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  AuthManager authmanager = AuthManager();
   @override
   Widget build(BuildContext context) {
     PageController pageController = PageController();
@@ -110,7 +112,12 @@ class _HomepageState extends State<Homepage> {
                 const Padding(
                   padding: EdgeInsets.all(25),
                   child: Text('Recommendations', style: body2),
-                )
+                ),
+                TextButton(
+                    onPressed: () {
+                      authmanager.auth.signOut();
+                    },
+                    child: const Text('sign out of here'))
               ],
             ),
           )),
