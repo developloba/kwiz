@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kwik/utils/constant.dart';
+import 'package:flutter/services.dart';
 
 import 'package:kwik/screens/explore.dart';
 import 'package:kwik/screens/home.dart';
 
 import 'package:kwik/screens/profile.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Dash extends StatefulWidget {
   const Dash({Key? key}) : super(key: key);
@@ -17,40 +16,57 @@ class Dash extends StatefulWidget {
 class _DashState extends State<Dash> {
   final String firstname = 'Korede';
   int currentPageIndex = 0;
+  final navcolor = Colors.grey[200];
+
   var pages = [const Dash(), const Explorer(), const Account()];
+  SystemUiOverlayStyle overlayStyle = SystemUiOverlayStyle(
+      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.grey[200]);
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SystemChrome.setSystemUIOverlayStyle(overlayStyle);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         bottomNavigationBar: Container(
-          color: const Color.fromARGB(255, 207, 243, 249),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: GNav(
-              onTabChange: (int index) {
-                setState(() {
-                  currentPageIndex = index;
-                });
-              },
-              textStyle: heading2,
-              selectedIndex: currentPageIndex,
-              backgroundColor: const Color.fromARGB(255, 207, 243, 249),
-              tabs: const <GButton>[
-                GButton(
-                  icon: Icons.home,
-                  text: 'Home',
+          color: navcolor,
+          padding: const EdgeInsets.all(10),
+          child: NavigationBar(
+            backgroundColor: Colors.grey[200],
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            selectedIndex: currentPageIndex,
+            destinations: const <Widget>[
+              NavigationDestination(
+                icon: Icon(
+                  Icons.home_outlined,
                 ),
-                GButton(
-                  icon: Icons.explore,
-                  text: 'Explore',
+                selectedIcon: Icon(
+                  Icons.home_rounded,
                 ),
-                GButton(icon: Icons.account_circle, text: 'Profile'),
-              ],
-              gap: 20,
-              color: Colors.black,
-              iconSize: 30,
-              tabBackgroundColor: const Color.fromARGB(255, 226, 251, 255),
-            ),
+                label: 'Home',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.explore_outlined),
+                selectedIcon: Icon(Icons.explore),
+                label: 'Explore',
+              ),
+              NavigationDestination(
+                tooltip: 'heyyy',
+                selectedIcon: Icon(Icons.account_circle),
+                icon: Icon(Icons.account_circle_outlined),
+                label: 'Profile',
+              ),
+            ],
           ),
         ),
         body: <Widget>[

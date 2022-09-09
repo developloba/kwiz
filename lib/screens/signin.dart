@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kwik/components/progressspinner.dart';
 import 'package:kwik/screens/login.dart';
+import 'package:kwik/screens/userinfo.dart';
 import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/utils/errorhandler.dart';
@@ -28,6 +29,7 @@ class _SignupState extends State<Signup> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Auth(
+        destination: const UserData(),
         body: Spinner(
           inAsyncall: spinning,
           child: Column(
@@ -90,8 +92,10 @@ class _SignupState extends State<Signup> {
                       spinning = false;
                     });
                   } on FirebaseAuthException catch (e) {
-                    response = errormanager.getMessageFromErrorCode(e.code);
-                    spinning = false;
+                    setState(() {
+                      response = errormanager.getMessageFromErrorCode(e.code);
+                      spinning = false;
+                    });
                   }
                 },
                 child: const Text(
@@ -127,7 +131,9 @@ class _SignupState extends State<Signup> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(17),
                             side: BorderSide(color: primarycolor, width: 3))),
-                    onPressed: () {},
+                    onPressed: () {
+                      authmanager.signInWithGoogle();
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       mainAxisSize: MainAxisSize.max,

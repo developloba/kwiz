@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/components/custom_widgets.dart';
+import 'package:kwik/screens/scaffold.dart';
 import 'package:kwik/screens/signin.dart';
 import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
@@ -14,6 +15,7 @@ class Home extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Auth(
+        destination: const Dash(),
         body: Column(
           children: [
             Container(

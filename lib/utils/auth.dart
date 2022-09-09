@@ -1,14 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:kwik/screens/home.dart';
-import 'package:kwik/screens/scaffold.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthManager {
   final auth = FirebaseAuth.instance;
 
+  var userid = FirebaseAuth.instance.currentUser?.uid;
   bool finished = false;
   createuser(email, password) async {
     await auth.createUserWithEmailAndPassword(email: email, password: password);
@@ -18,7 +15,6 @@ class AuthManager {
 
   loginuser(email, password) async {
     await auth.signInWithEmailAndPassword(email: email, password: password);
-    print('loggin in');
   }
 
   Future<UserCredential> signInWithGoogle() async {
@@ -41,8 +37,9 @@ class AuthManager {
 }
 
 class Auth extends StatefulWidget {
-  const Auth({super.key, required this.body});
+  const Auth({super.key, required this.body, required this.destination});
   final Widget body;
+  final Widget destination;
 
   @override
   State<Auth> createState() => _AuthState();
@@ -56,7 +53,7 @@ class _AuthState extends State<Auth> {
         stream: authmanager.auth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return const Dash();
+            return widget.destination;
           }
           return widget.body;
         });

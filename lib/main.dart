@@ -21,6 +21,10 @@ void main() async {
     title: 'Kwiz',
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
+      navigationBarTheme: const NavigationBarThemeData(
+          labelTextStyle: MaterialStatePropertyAll(
+              TextStyle(fontFamily: 'Pop', fontSize: 12)),
+          indicatorColor: Color.fromARGB(139, 0, 221, 233)),
       primaryColor: Colors.blue.shade900,
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: const AppBarTheme(color: Colors.transparent, elevation: 0),

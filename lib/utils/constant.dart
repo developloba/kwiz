@@ -16,3 +16,4 @@ const heading2 =
 Color primarycolor = const Color.fromARGB(221, 22, 54, 198);
 Color secondarycolor = const Color.fromARGB(255, 0, 221, 233);
 const body3 = TextStyle(fontFamily: 'Pop', fontSize: 16, color: Colors.black);
+const textFieldwidth = 450;
