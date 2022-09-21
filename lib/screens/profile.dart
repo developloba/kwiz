@@ -4,6 +4,7 @@ import 'package:kwik/utils/constant.dart';
 import 'package:kwik/components/icon.dart';
 import 'package:kwik/components/notifcard.dart';
 import 'package:kwik/utils/firestorage.dart';
+import 'package:random_avatar/random_avatar.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -19,6 +20,8 @@ class _AccountState extends State<Account> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          backgroundColor: const Color.fromARGB(255, 34, 87, 36),
+          pinned: true,
           automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -60,15 +63,10 @@ class _AccountState extends State<Account> {
                     topRight: Radius.circular(100))),
             child: Column(
               children: [
-                Container(
+                SizedBox(
                   width: 150,
                   height: 180,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage('assets/woman.jpg'))),
+                  child: randomAvatar('Starcrasher'),
                 ),
                 Padding(
                     padding: const EdgeInsets.all(16),
@@ -78,7 +76,7 @@ class _AccountState extends State<Account> {
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return const Text(
-                              'Welcome back',
+                              '',
                               style: heading,
                             );
                           } else {

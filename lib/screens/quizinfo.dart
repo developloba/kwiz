@@ -30,6 +30,7 @@ class Info extends StatelessWidget {
                 ],
               ),
               pinned: true,
+              backgroundColor: Colors.blueGrey,
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(20),
                 child: Container(

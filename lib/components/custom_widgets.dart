@@ -12,19 +12,21 @@ class Txtfield1 extends StatefulWidget {
   final double side;
   final double bottom;
   final TextEditingController controls;
+  final TextCapitalization caps;
   // ignore: prefer_typing_uninitialized_variables
   var val;
-  Txtfield1({
-    Key? key,
-    this.width = 400,
-    this.text = 'Username',
-    this.dots = false,
-    this.pad = 0,
-    this.top = 0,
-    this.side = 0,
-    required this.controls,
-    this.bottom = 0,
-  }) : super(key: key);
+  Txtfield1(
+      {Key? key,
+      this.width = 400,
+      this.text = 'Username',
+      this.dots = false,
+      this.pad = 0,
+      this.top = 0,
+      this.side = 0,
+      required this.controls,
+      this.bottom = 0,
+      this.caps = TextCapitalization.none})
+      : super(key: key);
 
   @override
   State<Txtfield1> createState() => _Txtfield1State();
@@ -44,6 +46,7 @@ class _Txtfield1State extends State<Txtfield1> {
         child: SizedBox(
           width: widget.width,
           child: TextFormField(
+              textCapitalization: TextCapitalization.none,
               obscureText: widget.dots,
               controller: widget.controls,
               decoration: InputDecoration(

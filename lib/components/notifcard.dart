@@ -19,7 +19,7 @@ class Notifcard extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: SizedBox(
         height: 280,
-        width: 470,
+        width: 500,
         child: Card(
           color: primary,
           elevation: 10,

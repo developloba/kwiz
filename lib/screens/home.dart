@@ -4,6 +4,7 @@ import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/screens/quizinfo.dart';
 import 'package:kwik/utils/firestorage.dart';
+import 'package:random_avatar/random_avatar.dart';
 import '../components/custom_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -36,11 +37,14 @@ class _HomepageState extends State<Homepage> {
                     width: 65,
                     height: 65,
                     decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey,
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/woman.jpg'))),
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                    child: SizedBox(
+                      width: 150,
+                      height: 180,
+                      child: randomAvatar('Starcrasher'),
+                    ),
                   )
                 ],
               ),
@@ -126,7 +130,42 @@ class _HomepageState extends State<Homepage> {
               ),
               const Padding(
                 padding: EdgeInsets.all(25),
-                child: Text('Recommendations', style: body2),
+                child: Text('Recommendations for you', style: body2),
+              ),
+              GridView.count(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                children: const [
+                  SizedBox(
+                    width: 200,
+                    height: 300,
+                    child: Card(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 300,
+                    child: Card(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 300,
+                    child: Card(
+                      color: Colors.blue,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    height: 300,
+                    child: Card(
+                      color: Colors.blue,
+                    ),
+                  )
+                ],
               ),
               TextButton(
                   onPressed: () {
