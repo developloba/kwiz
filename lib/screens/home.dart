@@ -22,16 +22,20 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          Container(
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          backgroundColor: primarycolor,
+          pinned: true,
+          expandedHeight: 380,
+          flexibleSpace: Container(
+            height: 500,
             color: primarycolor,
             width: MediaQuery.of(context).size.width,
-            height: 2000,
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -72,7 +76,7 @@ class _HomepageState extends State<Homepage> {
                           } else {
                             var data = snapshot.data!.get('firstname');
                             return Text(
-                              'Welcome back $data',
+                              'Welcome back, $data',
                               style: const TextStyle(
                                   fontFamily: 'Euclid',
                                   fontSize: 45,
@@ -92,66 +96,123 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
           ),
-          Positioned(
-              top: 400,
-              bottom: 0,
-              right: 0,
-              left: 0,
+          bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(20),
               child: Container(
-                height: double.maxFinite,
-                width: double.maxFinite,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(100),
-                    )),
-              )),
-          Positioned(
-            top: 280,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            child: SizedBox(
-              height: 400,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: Bigcarousel(carouselmamager: carouselmamager),
-                  ),
-                  SizedBox(
-                      width: 520,
-                      height: 350,
-                      child: Card(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
-                        clipBehavior: Clip.antiAlias,
-                        color: const Color.fromARGB(136, 207, 206, 206),
-                        elevation: 0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const [
-                                Text('Recommended Genres', style: body1),
-                                Icon(Icons.arrow_forward_ios)
+                  height: 70,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(200),
+                      )))),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Genre(carouselmamager: carouselmamager),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text('Popular with students',
+                            style: TextStyle(
+                                fontFamily: 'Euclid',
+                                fontSize: 25,
+                                color: Colors.black)),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 400,
+                      child: ListView.builder(
+                          itemCount: carouselmamager.recommendations.length,
+                          itemBuilder: ((context, index) {
+                            return Row(
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 20),
+                                  width: 65,
+                                  height: 65,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Colors.grey,
+                                  ),
+                                  child: carouselmamager
+                                      .recommendation_images[index],
+                                )
                               ],
-                            ),
-                            Smallcarousel(carouselmanager: carouselmamager)
-                          ],
-                        ),
-                      )),
-                  TextButton(
-                      onPressed: () {
-                        authmanager.auth.signOut();
-                      },
-                      child: const Text('sign out of here'))
-                ],
-              ),
+                            );
+                          })),
+                    )
+                  ],
+                ),
+                TextButton(
+                    onPressed: () {
+                      authmanager.auth.signOut();
+                    },
+                    child: const Text('sign out of here'))
+              ],
             ),
           ),
+        )
+      ],
+    );
+  }
+}
+
+class Genre extends StatelessWidget {
+  const Genre({
+    Key? key,
+    required this.carouselmamager,
+  }) : super(key: key);
+
+  final Carousel carouselmamager;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 350,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        textBaseline: TextBaseline.alphabetic,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text('Recommended Genres',
+                    style: TextStyle(
+                        fontFamily: 'Euclid',
+                        fontSize: 25,
+                        color: Colors.black)),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.grey,
+                )
+              ],
+            ),
+          ),
+          Smallcarousel(carouselmanager: carouselmamager),
+          Divider(
+            color: Colors.grey[100],
+            height: 20,
+            thickness: 20,
+          )
         ],
       ),
     );

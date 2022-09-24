@@ -18,7 +18,7 @@ class _SmallcarouselState extends State<Smallcarousel> {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
-      itemCount: widget.carouselmanager.images.length,
+      itemCount: widget.carouselmanager.genres.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,8 @@ class _SmallcarouselState extends State<Smallcarousel> {
               child: InkWell(
                   onTap: () {},
                   child: Container(
-                    padding: const EdgeInsets.all(10),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
                     width: 250,
                     height: 150,
                     child: Card(
@@ -38,13 +39,13 @@ class _SmallcarouselState extends State<Smallcarousel> {
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      child: widget.carouselmanager.images[itemIndex],
+                      child: widget.carouselmanager.genres[itemIndex],
                     ),
                   )),
             ),
             Expanded(
               child: Text(
-                widget.carouselmanager.descriptions[itemIndex],
+                widget.carouselmanager.genre_description[itemIndex],
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 10, fontFamily: 'Pop'),
               ),
