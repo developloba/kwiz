@@ -32,15 +32,15 @@ class _ExplorerState extends State<Explorer> {
                         topRight: Radius.circular(100)))),
           ),
           flexibleSpace: Container(
-            padding: EdgeInsets.all(40),
+            padding: const EdgeInsets.all(40),
             child: (TextField(
               textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(
                   focusColor: Colors.white,
                   filled: true,
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   hintText: 'Search for quizzes here',
-                  fillColor: Color.fromARGB(106, 255, 255, 255),
+                  fillColor: const Color.fromARGB(106, 255, 255, 255),
                   border: OutlineInputBorder(
                       borderSide:
                           const BorderSide(color: Colors.transparent, width: 0),
