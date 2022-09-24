@@ -28,6 +28,7 @@ class _HomepageState extends State<Homepage> {
           backgroundColor: primarycolor,
           pinned: true,
           expandedHeight: 380,
+          collapsedHeight: 100,
           flexibleSpace: Container(
             height: 500,
             color: primarycolor,
