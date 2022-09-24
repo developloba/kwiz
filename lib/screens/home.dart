@@ -38,61 +38,68 @@ class _HomepageState extends State<Homepage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 20),
-                      width: 65,
-                      height: 65,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey,
-                      ),
-                      child: SizedBox(
-                        width: 150,
-                        height: 180,
-                        child: randomAvatar('Sugar crush'),
-                      ),
-                    )
-                  ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 20),
+                        width: 65,
+                        height: 65,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey,
+                        ),
+                        child: SizedBox(
+                          width: 150,
+                          height: 180,
+                          child: randomAvatar('Sugar crush'),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(
-                    width: 350,
-                    height: 120,
-                    child: StreamBuilder<DocumentSnapshot>(
-                        stream:
-                            store.usercollection.doc(store.userid).snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
-                            return const Text(
-                              'Welcome back',
-                              style: TextStyle(
-                                  fontFamily: 'Euclid',
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
-                            );
-                          } else {
-                            var data = snapshot.data!.get('firstname');
-                            return Text(
-                              'Welcome back, $data',
-                              style: const TextStyle(
-                                  fontFamily: 'Euclid',
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white),
-                            );
-                          }
-                        })),
-                const Padding(
-                  padding: EdgeInsets.all(5),
-                  child: Text('Here are some picks for you',
-                      style: TextStyle(
-                          fontFamily: 'Euclid',
-                          color: Colors.white,
-                          fontSize: 25)),
+                Expanded(
+                  child: SizedBox(
+                      width: 350,
+                      height: 120,
+                      child: StreamBuilder<DocumentSnapshot>(
+                          stream: store.usercollection
+                              .doc(store.userid)
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Text(
+                                'Welcome back',
+                                style: TextStyle(
+                                    fontFamily: 'Euclid',
+                                    fontSize: 45,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              );
+                            } else {
+                              var data = snapshot.data!.get('firstname');
+                              return Text(
+                                'Welcome back, $data',
+                                style: const TextStyle(
+                                    fontFamily: 'Euclid',
+                                    fontSize: 45,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              );
+                            }
+                          })),
+                ),
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Text('Here are some picks for you',
+                        style: TextStyle(
+                            fontFamily: 'Euclid',
+                            color: Colors.white,
+                            fontSize: 25)),
+                  ),
                 ),
               ],
             ),
