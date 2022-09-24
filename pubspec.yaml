@@ -37,6 +37,8 @@ dependencies:
   google_sign_in: ^4.5.1
   flutter_datetime_picker: ^1.5.1
   random_avatar: any
+  carousel_slider: ^4.1.1
+
 
 dev_dependencies:
   flutter_test:
@@ -56,16 +58,17 @@ flutter:
 
   assets:
     - assets/
+    - assets/card_pics/
 
   fonts:
       - family: 'Euclid'
         fonts:
-          - asset: assets/Euclid-Medium.ttf
-          - asset: assets/Euclid-SemiBold.ttf
+          - asset: assets/fonts/Euclid-Medium.ttf
+          - asset: assets/fonts/Euclid-SemiBold.ttf
             style: italic
       - family: 'Pop'
         fonts:
-          - asset: assets/Poppins-Medium.ttf
-          - asset: assets/Poppins-Bold.ttf
+          - asset: assets/fonts/Poppins-Medium.ttf
+          - asset: assets/fonts/Poppins-Bold.ttf
             style: italic
 

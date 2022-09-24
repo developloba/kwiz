@@ -5,6 +5,7 @@ import 'package:kwik/screens/explore.dart';
 import 'package:kwik/screens/home.dart';
 
 import 'package:kwik/screens/profile.dart';
+import 'package:kwik/utils/constant.dart';
 
 class Dash extends StatefulWidget {
   const Dash({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _DashState extends State<Dash> {
           color: navcolor,
           padding: const EdgeInsets.all(10),
           child: NavigationBar(
-            backgroundColor: Colors.grey[200],
+            backgroundColor: navcolor,
             onDestinationSelected: (int index) {
               setState(() {
                 currentPageIndex = index;

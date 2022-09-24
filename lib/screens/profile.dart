@@ -66,7 +66,7 @@ class _AccountState extends State<Account> {
                 SizedBox(
                   width: 150,
                   height: 180,
-                  child: randomAvatar('Starcrasher'),
+                  child: randomAvatar('Sugar crush'),
                 ),
                 Padding(
                     padding: const EdgeInsets.all(16),

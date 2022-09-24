@@ -5,7 +5,6 @@ import 'package:kwik/components/progressspinner.dart';
 import 'package:kwik/screens/scaffold.dart';
 import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/firestorage.dart';
-import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
 import '../utils/constant.dart';
 
 class UserData extends StatefulWidget {
@@ -113,8 +112,8 @@ class _UserDataState extends State<UserData> {
                 });
                 await store.additionalUserInfo(
                     //the class to beginnning of sentance case makes the first letter caps
-                    firstname: toBeginningOfSentenceCase(firstnamecontrol.text),
-                    lastname: toBeginningOfSentenceCase(lastnamecontrol.text));
+                    firstname: firstnamecontrol.text,
+                    lastname: lastnamecontrol.text);
                 setState(() {
                   spinning = false;
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
