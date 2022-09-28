@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:kwik/components/google.dart';
 import 'package:kwik/components/progressspinner.dart';
 import 'package:kwik/screens/login.dart';
 import 'package:kwik/screens/userinfo.dart';
@@ -121,42 +122,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
               ),
-              SizedBox(
-                width: 450,
-                height: 65,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(17),
-                            side: BorderSide(color: primarycolor, width: 3))),
-                    onPressed: () {
-                      authmanager.signInWithGoogle();
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.only(left: 10),
-                          height: 33,
-                          width: 33,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage('assets/google.png'))),
-                        ),
-                        const Text(
-                          'Continue with Google',
-                          style: TextStyle(
-                              fontFamily: 'Euclid',
-                              color: Colors.grey,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    )),
-              ),
+              GoogleLogin(),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Row(

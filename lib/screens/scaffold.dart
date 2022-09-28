@@ -5,7 +5,6 @@ import 'package:kwik/screens/explore.dart';
 import 'package:kwik/screens/home.dart';
 
 import 'package:kwik/screens/profile.dart';
-import 'package:kwik/utils/constant.dart';
 
 class Dash extends StatefulWidget {
   const Dash({Key? key}) : super(key: key);
@@ -57,8 +56,8 @@ class _DashState extends State<Dash> {
                 label: 'Home',
               ),
               NavigationDestination(
-                icon: Icon(Icons.explore_outlined),
-                selectedIcon: Icon(Icons.explore),
+                icon: Icon(Icons.auto_awesome_outlined),
+                selectedIcon: Icon(Icons.auto_awesome_rounded),
                 label: 'Explore',
               ),
               NavigationDestination(

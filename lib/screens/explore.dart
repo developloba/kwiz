@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/utils/carousel_manager.dart';
 import 'package:kwik/utils/constant.dart';
 
 class Explorer extends StatefulWidget {
@@ -9,9 +10,7 @@ class Explorer extends StatefulWidget {
 }
 
 class _ExplorerState extends State<Explorer> {
-  bool createquiz() {
-    return true;
-  }
+  Carousel categories = Carousel();
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +37,51 @@ class _ExplorerState extends State<Explorer> {
               decoration: InputDecoration(
                   focusColor: Colors.white,
                   filled: true,
-                  prefixIcon: const Icon(Icons.search),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
                   hintText: 'Search for quizzes here',
-                  fillColor: const Color.fromARGB(106, 255, 255, 255),
-                  border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.transparent, width: 0),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  fillColor: ksearchtextfeildcolor,
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: ksearchtextfeildcolor,
+                      ),
+                      borderRadius: BorderRadius.circular(20)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: ksearchtextfeildcolor,
+                      ),
                       borderRadius: BorderRadius.circular(20))),
             )),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Text(
+                  'Categories',
+                  style: heading2,
+                ),
+              ),
+              SizedBox(
+                width: 500,
+                height: 700,
+                child: ListView.builder(
+                    itemCount: categories.genres.length,
+                    itemBuilder: ((context, index) => Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Card(
+                              clipBehavior: Clip.hardEdge,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: categories.genres[index]),
+                        ))),
+              ),
+            ],
           ),
         )
       ],

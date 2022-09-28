@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kwik/screens/settings.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/components/icon.dart';
 import 'package:kwik/components/notifcard.dart';
 import 'package:kwik/utils/firestorage.dart';
-import 'package:random_avatar/random_avatar.dart';
 
 class Account extends StatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -25,11 +25,19 @@ class _AccountState extends State<Account> {
           automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              Appicon(
-                icon: Icons.settings,
-                color: Colors.white,
-                backcolor: Colors.black26,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) {
+                    return const Appsettings();
+                  })));
+                },
+                child: const Appicon(
+                  icon: Icons.settings,
+                  color: Colors.white,
+                  backcolor: Colors.black26,
+                ),
               )
             ],
           ),
@@ -63,10 +71,8 @@ class _AccountState extends State<Account> {
                     topRight: Radius.circular(100))),
             child: Column(
               children: [
-                SizedBox(
-                  width: 150,
-                  height: 180,
-                  child: randomAvatar('Sugar crush'),
+                const Avatarbuilder(
+                  size: 150,
                 ),
                 Padding(
                     padding: const EdgeInsets.all(16),

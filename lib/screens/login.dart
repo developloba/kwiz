@@ -7,6 +7,7 @@ import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/utils/errorhandler.dart';
 import '../components/custom_widgets.dart';
+import '../components/google.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -135,43 +136,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: 450,
-                    height: 65,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(17),
-                                side:
-                                    BorderSide(color: primarycolor, width: 3))),
-                        onPressed: () {
-                          authmanger.signInWithGoogle();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.only(left: 10),
-                              height: 33,
-                              width: 33,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/google.png'))),
-                            ),
-                            const Text(
-                              'Continue with Google',
-                              style: TextStyle(
-                                  fontFamily: 'Euclid',
-                                  color: Colors.grey,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )),
-                  ),
+                  GoogleLogin(),
                   Padding(
                     padding: const EdgeInsets.only(top: 40),
                     child: Row(
@@ -199,7 +164,7 @@ class _LoginState extends State<Login> {
                         )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             )));

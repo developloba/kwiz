@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:kwik/screens/quizinfo.dart';
 
 import '../utils/carousel_manager.dart';
 
@@ -24,38 +25,39 @@ class _SmallcarouselState extends State<Smallcarousel> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              height: 200,
-              child: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    width: 250,
-                    height: 150,
-                    child: Card(
-                      elevation: 0,
-                      semanticContainer: true,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: widget.carouselmanager.genres[itemIndex],
-                    ),
-                  )),
-            ),
-            Expanded(
-              child: Text(
-                widget.carouselmanager.genre_description[itemIndex],
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 10, fontFamily: 'Pop'),
-              ),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Info()),
+                    );
+                  });
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                  width: 220,
+                  height: 200,
+                  child: Card(
+                    elevation: 0,
+                    semanticContainer: true,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    child: widget.carouselmanager.genres[itemIndex],
+                  ),
+                )),
+            Text(
+              widget.carouselmanager.genre_description[itemIndex],
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 15, fontFamily: 'Pop'),
             )
           ],
         );
       },
       options: CarouselOptions(
-          viewportFraction: 0.5,
-          height: 250,
+          viewportFraction: 0.4,
           autoPlay: false,
           enlargeCenterPage: false,
           pageSnapping: false,

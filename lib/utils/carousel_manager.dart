@@ -31,10 +31,16 @@ class Carousel {
     'History',
     'Trivia',
   ];
-  List<String> recommendations = ['Am I a llama?', 'Science for nerds'];
+  List<String> recommendations = [
+    'Am I a llama?',
+    'Science for nerds',
+    'How much do you know about plants?'
+  ];
+  List<String> author = ['Mathew Steinberg', 'Alfredo', 'Efe Fitzelburger'];
 
   List<Image> recommendation_images = [
     Image.asset('assets/card_pics/3655778.jpg', fit: BoxFit.fill),
     Image.asset('assets/card_pics/2385036.jpg', fit: BoxFit.fill),
+    Image.asset('assets/card_pics/Scene-19.jpg', fit: BoxFit.fill),
   ];
 }
