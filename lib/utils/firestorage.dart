@@ -70,20 +70,32 @@ class Avatarbuilder extends StatelessWidget {
     return StreamBuilder<DocumentSnapshot>(
         stream: store.usercollection.doc(store.userid).snapshots(),
         builder: (context, snapshot) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-            width: size,
-            height: size,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey,
-            ),
-            child: SizedBox(
-              width: 150,
-              height: 180,
-              child: randomAvatar(snapshot.data!.get('avatar_id')),
-            ),
-          );
+          if (snapshot.hasData) {
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              width: size,
+              height: size,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey,
+              ),
+              child: SizedBox(
+                width: 150,
+                height: 180,
+                child: randomAvatar(snapshot.data?.get('avatar_id')),
+              ),
+            );
+          } else {
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              width: size,
+              height: size,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.grey,
+              ),
+            );
+          }
         });
   }
 }

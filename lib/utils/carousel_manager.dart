@@ -43,4 +43,17 @@ class Carousel {
     Image.asset('assets/card_pics/2385036.jpg', fit: BoxFit.fill),
     Image.asset('assets/card_pics/Scene-19.jpg', fit: BoxFit.fill),
   ];
+  List<Image> Newreleases = [
+    Image.asset('assets/card_pics/2130.jpg', fit: BoxFit.fill),
+    Image.asset('assets/card_pics/2452.jpg', fit: BoxFit.fill),
+    Image.asset('assets/card_pics/3700_2_06.jpg', fit: BoxFit.fill),
+    Image.asset('assets/card_pics/cont_1_07.jpg', fit: BoxFit.fill),
+  ];
+  List<String> newdescription = [
+    'How much do you know about space?',
+    'What about carbs?',
+    '101 steps to being influencial',
+    'Use 100% of your brain'
+  ];
+  List<double> ratings = [4.0, 3.5, 2.3, 4, 8];
 }

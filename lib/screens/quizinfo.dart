@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/quizfront.dart';
+import 'package:kwik/screens/settings.dart';
 import 'package:kwik/utils/constant.dart';
 
 import '../components/icon.dart';
@@ -26,7 +27,15 @@ class Info extends StatelessWidget {
                       icon: Icons.arrow_back_ios_sharp,
                     ),
                   ),
-                  const Appicon(icon: Icons.settings)
+                  TextButton(
+                    onPressed: (() {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const Appsettings())));
+                    }),
+                    child: const Appicon(icon: Icons.settings),
+                  )
                 ],
               ),
               pinned: true,

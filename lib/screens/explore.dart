@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/utils/carousel_manager.dart';
 import 'package:kwik/utils/constant.dart';
+import 'package:kwik/utils/firestorage.dart';
 
 class Explorer extends StatefulWidget {
   const Explorer({Key? key}) : super(key: key);
@@ -17,22 +18,28 @@ class _ExplorerState extends State<Explorer> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: 200,
+          collapsedHeight: 150,
+          expandedHeight: 150,
+          pinned: true,
           backgroundColor: primarycolor,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(20),
-            child: Container(
-                height: 50,
-                width: double.maxFinite,
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(100),
-                        topRight: Radius.circular(100)))),
+            child: Center(
+              child: Container(
+                  height: 50,
+                  width: double.maxFinite,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(100),
+                          topRight: Radius.circular(100)))),
+            ),
           ),
           flexibleSpace: Container(
             padding: const EdgeInsets.all(40),
             child: (TextField(
+              style: const TextStyle(
+                  color: Colors.white, decoration: TextDecoration.none),
               textCapitalization: TextCapitalization.sentences,
               decoration: InputDecoration(
                   focusColor: Colors.white,
@@ -60,31 +67,127 @@ class _ExplorerState extends State<Explorer> {
         SliverToBoxAdapter(
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text(
-                  'Categories',
-                  style: heading2,
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Genre(carouselmamager: categories),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        Text(
+                          'New Releases',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        Icon(Icons.arrow_forward_ios, color: Colors.grey)
+                      ],
+                    ),
+                    NewRelease(categories: categories)
+                  ],
                 ),
-              ),
-              SizedBox(
-                width: 500,
-                height: 700,
-                child: ListView.builder(
-                    itemCount: categories.genres.length,
-                    itemBuilder: ((context, index) => Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Card(
-                              clipBehavior: Clip.hardEdge,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: categories.genres[index]),
-                        ))),
-              ),
+              )
             ],
           ),
         )
       ],
+    );
+  }
+}
+
+class NewRelease extends StatelessWidget {
+  const NewRelease({
+    Key? key,
+    required this.categories,
+  }) : super(key: key);
+
+  final Carousel categories;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 530,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: PageView.builder(
+            padEnds: false,
+            controller: PageController(viewportFraction: 0.8),
+            itemCount: categories.Newreleases.length,
+            itemBuilder: ((context, index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    SizedBox(
+                      width: 500,
+                      height: 400,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Card(
+                          semanticContainer: true,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                          child: Stack(fit: StackFit.expand, children: [
+                            categories.Newreleases[index],
+                            Positioned(
+                              top: 300,
+                              left: 320,
+                              child: SizedBox(
+                                width: 60,
+                                height: 60,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                        backgroundColor: primarycolor,
+                                        elevation: 0),
+                                    onPressed: () {},
+                                    child: const Center(
+                                        child: Icon(
+                                      Icons.play_arrow,
+                                      size: 20,
+                                    ))),
+                              ),
+                            )
+                          ]),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        categories.newdescription[index],
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.grey),
+                      ),
+                    )),
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            categories.ratings[index].toString(),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.grey),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(
+                              Icons.auto_awesome,
+                              color: Colors.amber,
+                            ),
+                          )
+                        ],
+                      ),
+                    ))
+                  ],
+                ))),
+      ),
     );
   }
 }

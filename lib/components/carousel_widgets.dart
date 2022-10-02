@@ -67,42 +67,47 @@ class _SmallcarouselState extends State<Smallcarousel> {
 }
 
 class Bigcarousel extends StatelessWidget {
-  const Bigcarousel({
-    Key? key,
-    required this.carouselmamager,
-  }) : super(key: key);
+  const Bigcarousel(
+      {Key? key, required this.carouselmamager, required this.controller})
+      : super(key: key);
 
   final Carousel carouselmamager;
+  final CarouselController controller;
 
   @override
   Widget build(BuildContext context) {
     return CarouselSlider.builder(
+      carouselController: controller,
       itemCount: carouselmamager.images.length,
       itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
         return SizedBox(
-          height: 430,
+          height: 380,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
             children: [
+              InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Info(),
+                        ));
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    width: 400,
+                    height: 250,
+                    child: Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      child: carouselmamager.images[itemIndex],
+                    ),
+                  )),
               SizedBox(
-                height: 300,
-                child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      width: 400,
-                      height: 250,
-                      child: Card(
-                        semanticContainer: true,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        child: carouselmamager.images[itemIndex],
-                      ),
-                    )),
-              ),
-              Expanded(
+                width: 300,
+                height: 30,
                 child: Text(
                   carouselmamager.descriptions[itemIndex],
                   textAlign: TextAlign.center,
