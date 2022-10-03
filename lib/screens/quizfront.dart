@@ -103,7 +103,6 @@ class _QuizState extends State<Quiz> with TickerProviderStateMixin {
                                     vsync: this,
                                     duration: const Duration(seconds: 1));
                                 controls.forward();
-
                                 Alert(
                                     style: AlertStyle(
                                       animationType: AnimationType.shrink,

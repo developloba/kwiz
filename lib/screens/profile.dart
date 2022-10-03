@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/settings.dart';
+import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/components/icon.dart';
 import 'package:kwik/components/notifcard.dart';
@@ -28,10 +29,7 @@ class _AccountState extends State<Account> {
             children: [
               TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: ((context) {
-                    return const Appsettings();
-                  })));
+                  showSettings(context, store, AuthManager());
                 },
                 child: const Appicon(
                   icon: Icons.settings,

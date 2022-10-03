@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/screens/settings.dart';
+import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 
 import '../components/icon.dart';
+import '../utils/firestorage.dart';
 
 class Info extends StatelessWidget {
   const Info({Key? key}) : super(key: key);
@@ -29,10 +31,7 @@ class Info extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: (() {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const Appsettings())));
+                      showSettings(context, Store(), AuthManager());
                     }),
                     child: const Appicon(icon: Icons.settings),
                   )

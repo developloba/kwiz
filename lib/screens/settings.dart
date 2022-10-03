@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kwik/components/icon.dart';
 import 'package:kwik/utils/auth.dart';
 import 'package:kwik/utils/constant.dart';
 import 'package:kwik/utils/firestorage.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Appsettings extends StatefulWidget {
   const Appsettings({super.key});
@@ -118,4 +118,51 @@ class Settingbutton extends StatelessWidget {
       ),
     );
   }
+}
+
+showSettings(context, store, authmanager) {
+  Alert(
+    type: AlertType.none,
+    context: context,
+    title: 'Settings',
+    content: SizedBox(
+      height: 500,
+      width: 400,
+      child: Column(
+        children: [
+          TextButton(
+            child: Text(
+              'Change Avatar',
+              style: TextStyle(color: primarycolor, fontSize: 30),
+            ),
+            onPressed: () {
+              store.changeavatar();
+            },
+          ),
+          TextButton(
+            child: Text(
+              'Log out',
+              style: TextStyle(color: primarycolor, fontSize: 30),
+            ),
+            onPressed: () {
+              authmanager.auth.signOut();
+            },
+          ),
+        ],
+      ),
+    ),
+    style: AlertStyle(
+      animationType: AnimationType.fromRight,
+      isCloseButton: false,
+      isOverlayTapDismiss: true,
+      descStyle: const TextStyle(),
+      descTextAlign: TextAlign.center,
+      animationDuration: const Duration(milliseconds: 300),
+      alertBorder: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(80),
+      ),
+      titleStyle: heading,
+      alertAlignment: Alignment.center,
+    ),
+  ).show();
 }
