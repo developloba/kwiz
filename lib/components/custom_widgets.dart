@@ -140,7 +140,9 @@ class Button extends StatefulWidget {
       this.fill = Colors.blue,
       this.outline = Colors.transparent,
       this.labelcolor = Colors.white,
-      required this.onpress})
+      required this.onpress,
+      this.labelsize = 28,
+      this.borderradius = 17})
       : super(key: key);
   final double width;
   final double height;
@@ -148,7 +150,9 @@ class Button extends StatefulWidget {
   final Color fill;
   final Color outline;
   final Color labelcolor;
-  final void Function() onpress;
+  final void Function()? onpress;
+  final double labelsize;
+  final double borderradius;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -162,17 +166,17 @@ class _ButtonState extends State<Button> {
           padding: const EdgeInsets.all(16),
           backgroundColor: widget.fill,
           elevation: 0,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(17)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(widget.borderradius)),
           fixedSize: Size(widget.width, widget.height),
           side: BorderSide(color: widget.outline)),
       onPressed: () {
-        widget.onpress;
+        widget.onpress!.call();
       },
       child: Text(
         widget.label,
         style: TextStyle(
-          fontSize: 28,
+          fontSize: widget.labelsize,
           color: widget.labelcolor,
         ),
       ),

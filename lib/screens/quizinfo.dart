@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kwik/components/custom_widgets.dart';
+import 'package:kwik/screens/flashcard.dart';
 import 'package:kwik/screens/quizfront.dart';
 import 'package:kwik/screens/settings.dart';
 import 'package:kwik/utils/auth.dart';
@@ -17,6 +19,7 @@ class Info extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
+              collapsedHeight: 100,
               automaticallyImplyLeading: false,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -202,26 +205,45 @@ class Info extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 150,
-                      height: 70,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50)),
-                              backgroundColor: primarycolor,
-                              elevation: 0),
-                          onPressed: () {
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Button(
+                          onpress: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return const Quiz();
                               },
                             ));
                           },
-                          child: const Text('Play Now')),
-                    ),
+                          fill: primarycolor,
+                          width: 150,
+                          height: 70,
+                          label: 'Play now',
+                          labelsize: 15,
+                          borderradius: 50,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Button(
+                          onpress: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => const Flash())));
+                          },
+                          fill: primarycolor,
+                          width: 150,
+                          height: 70,
+                          label: 'Learn now',
+                          labelsize: 15,
+                          borderradius: 50,
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),

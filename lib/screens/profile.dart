@@ -21,6 +21,7 @@ class _AccountState extends State<Account> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          collapsedHeight: 80,
           backgroundColor: const Color.fromARGB(255, 34, 87, 36),
           pinned: true,
           automaticallyImplyLeading: false,
