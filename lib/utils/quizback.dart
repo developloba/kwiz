@@ -50,6 +50,11 @@ class Quizbrain {
     return questionbank[questionnumber].questionText;
   }
 
+  String getquestionind(index) {
+    return questionbank[index].questionText;
+  }
+  //thsi is specific for the flash card pageview
+
   bool getanswer() {
     return questionbank[questionnumber].questionAnswer;
   }
