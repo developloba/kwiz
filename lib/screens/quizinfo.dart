@@ -54,11 +54,14 @@ class Info extends StatelessWidget {
                             topRight: Radius.circular(100)))),
               ),
               expandedHeight: 300,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  'assets/tri.png',
-                  width: double.maxFinite,
-                  fit: BoxFit.fill,
+              flexibleSpace: Hero(
+                tag: 'carousel',
+                child: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/tri.png',
+                    width: double.maxFinite,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
