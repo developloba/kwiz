@@ -4,7 +4,7 @@ An interactive quiz app for learning
 
 ## Description
 
-This project is a quiz app targeted at students to provide an exiting user experience that encourages 
+This project is a quiz app targeted at students to provide an exciting user experience that encourages 
 learning.
 ![flutter_13](https://user-images.githubusercontent.com/95104961/194522790-de00ed38-aa41-4be6-ae94-d0bce6f9631c.png)
 ![flutter_14](https://user-images.githubusercontent.com/95104961/194522830-0a2410b1-7c05-4e6c-b6bb-55cfa22fbc9b.png)
